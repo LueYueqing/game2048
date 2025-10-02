@@ -110,7 +110,7 @@ module.exports = {
     })
   ],
   optimization: {
-    minimize: true,
+    minimize: false,
     minimizer: [
       new TerserPlugin({
         terserOptions: {
@@ -120,7 +120,10 @@ module.exports = {
             pure_funcs: [], // 不删除任何函数
             // SEO 友好压缩
             keep_fargs: true,
-            keep_fnames: true
+            keep_fnames: true,
+            // 禁用可能导致问题的优化
+            side_effects: false,
+            unused: false
           },
           mangle: {
             // 不混淆函数名，保持 SEO 友好

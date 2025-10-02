@@ -5,7 +5,11 @@ import { Game2048 } from './game.js';
 
 // 性能优化：使用requestAnimationFrame优化动画
 const initGame = () => {
-    new Game2048();
+    const game = new Game2048();
+    // 确保游戏实例被正确创建
+    if (!game) {
+        console.error('Failed to initialize Game2048');
+    }
 };
 
 // 优化加载性能
