@@ -468,13 +468,136 @@ class Game2048 {
         document.getElementById('game-over').style.display = 'flex';
     }
     
+    confirmNewGame() {
+        // 检查是否有游戏进度
+        const hasProgress = this.score > 0 || this.board.some(row => row.some(cell => cell > 0));
+        
+        if (!hasProgress) {
+            // 如果没有进度，直接开始新游戏
+            this.reset();
+            return;
+        }
+        
+        // 创建自定义确认弹窗
+        this.showNewGameConfirmation();
+    }
+    
+    showNewGameConfirmation() {
+        // 创建遮罩层
+        const overlay = document.createElement('div');
+        overlay.className = 'confirmation-overlay';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        `;
+        
+        // 创建弹窗
+        const modal = document.createElement('div');
+        modal.className = 'confirmation-modal';
+        modal.style.cssText = `
+            background: #faf8ef;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        `;
+        
+        modal.innerHTML = `
+            <h2 style="margin: 0 0 20px 0; color: #776e65; font-size: 24px;">New Game</h2>
+            <p style="margin: 0 0 30px 0; color: #776e65; font-size: 16px; line-height: 1.5;">
+                Are you sure you want to start a new game?<br>
+                <strong>All progress will be lost.</strong>
+            </p>
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <button id="confirm-new-game" style="
+                    background: #8f7a66;
+                    color: #f9f6f2;
+                    border: none;
+                    padding: 12px 24px;
+                    border-radius: 6px;
+                    font-size: 16px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                ">Start New Game</button>
+                <button id="cancel-new-game" style="
+                    background: #f67c5f;
+                    color: #f9f6f2;
+                    border: none;
+                    padding: 12px 24px;
+                    border-radius: 6px;
+                    font-size: 16px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                ">Cancel</button>
+            </div>
+        `;
+        
+        overlay.appendChild(modal);
+        document.body.appendChild(overlay);
+        
+        // 添加按钮事件
+        document.getElementById('confirm-new-game').addEventListener('click', () => {
+            document.body.removeChild(overlay);
+            this.reset();
+        });
+        
+        document.getElementById('cancel-new-game').addEventListener('click', () => {
+            document.body.removeChild(overlay);
+        });
+        
+        // 点击遮罩层关闭弹窗
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                document.body.removeChild(overlay);
+            }
+        });
+        
+        // 添加按钮悬停效果
+        const confirmBtn = document.getElementById('confirm-new-game');
+        const cancelBtn = document.getElementById('cancel-new-game');
+        
+        confirmBtn.addEventListener('mouseenter', () => {
+            confirmBtn.style.background = '#9f8a76';
+        });
+        confirmBtn.addEventListener('mouseleave', () => {
+            confirmBtn.style.background = '#8f7a66';
+        });
+        
+        cancelBtn.addEventListener('mouseenter', () => {
+            cancelBtn.style.background = '#f78c6c';
+        });
+        cancelBtn.addEventListener('mouseleave', () => {
+            cancelBtn.style.background = '#f67c5f';
+        });
+    }
+    
     reset() {
         this.board = Array(4).fill().map(() => Array(4).fill(0));
         this.score = 0;
         this.gameOver = false;
         this.won = false;
+        this.history = [];
+        this.historyIndex = -1;
+        this.swapUses = 1;
+        this.swapMode = false;
+        this.selectedTile = null;
+        
+        this.createBoard();
         this.addRandomTile();
         this.addRandomTile();
+        this.saveState();
         this.updateDisplay();
         this.updateBestScore();
         document.getElementById('game-over').style.display = 'none';
@@ -567,7 +690,7 @@ class Game2048 {
         
         // 按钮事件
         document.getElementById('new-game-btn').addEventListener('click', () => {
-            this.reset();
+            this.confirmNewGame();
         });
         
         document.getElementById('restart-btn').addEventListener('click', () => {
