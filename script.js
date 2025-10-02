@@ -1,4 +1,4 @@
-// 音效管理类
+// 音效管理类 
 class SoundManager {
     constructor() {
         this.sounds = {};
