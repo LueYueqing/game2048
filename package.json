@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development --watch",
-    "build": "webpack --mode production",
+    "build": "npm run build:seo",
     "build:seo": "webpack --config webpack.seo.config.js",
     "build:prod": "webpack --config webpack.production.config.js",
     "build:obfuscated": "OBFUSCATE=true webpack --config webpack.production.config.js",
