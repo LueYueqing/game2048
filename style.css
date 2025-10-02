@@ -25,7 +25,7 @@ body {
     border-radius: 10px;
     padding: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
+    max-width: 800px;
     width: 100%;
     margin: 0 auto;
     border: 1px solid #d6d6d6;
@@ -126,12 +126,15 @@ h1 {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
-    gap: 10px;
+    gap: 20px;
     background: #bbada0;
-    padding: 10px;
+    padding: 20px;
     border-radius: 10px;
-    width: 400px;
-    height: 400px;
+    width: 600px;
+    height: 600px;
+    max-width: 90vw;
+    max-height: 90vw;
+    aspect-ratio: 1;
 }
 
 .cell {
@@ -220,25 +223,28 @@ h1 {
 /* 移动端适配 */
 @media (max-width: 600px) {
     .container {
-        padding: 20px;
+        padding: 15px;
         margin: 10px;
     }
     
     .game-board {
-        width: 300px;
-        height: 300px;
+        width: 100%;
+        max-width: 500px;
+        height: 500px;
+        max-height: 80vw;
+        aspect-ratio: 1;
     }
     
     .tile {
-        font-size: 1.5em;
+        font-size: 1.8em;
     }
     
     .tile-128, .tile-256, .tile-512 {
-        font-size: 1.3em;
+        font-size: 1.5em;
     }
     
     .tile-1024, .tile-2048 {
-        font-size: 1.1em;
+        font-size: 1.3em;
     }
     
     h1 {
@@ -253,20 +259,23 @@ h1 {
 
 @media (max-width: 400px) {
     .game-board {
-        width: 250px;
-        height: 250px;
+        width: 100%;
+        max-width: 350px;
+        height: 350px;
+        max-height: 80vw;
+        aspect-ratio: 1;
     }
     
     .tile {
-        font-size: 1.2em;
+        font-size: 1.5em;
     }
     
     .tile-128, .tile-256, .tile-512 {
-        font-size: 1em;
+        font-size: 1.2em;
     }
     
     .tile-1024, .tile-2048 {
-        font-size: 0.9em;
+        font-size: 1em;
     }
 }
 

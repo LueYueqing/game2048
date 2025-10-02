@@ -281,7 +281,7 @@ class Game2048 {
         try {
             localStorage.setItem('2048-game-stats', JSON.stringify(this.gameStats));
         } catch (e) {
-            console.warn('无法保存游戏统计数据:', e);
+            console.warn('Unable to save game statistics:', e);
         }
     }
     
@@ -329,7 +329,7 @@ class Game2048 {
     }
     
     showWinMessage() {
-        alert('恭喜！您达到了2048！');
+        alert('Congratulations! You reached 2048!');
     }
     
     showGameOver() {
@@ -351,7 +351,7 @@ class Game2048 {
     }
     
     clearStats() {
-        if (confirm('确定要清除所有游戏统计数据吗？此操作不可恢复！')) {
+        if (confirm('Are you sure you want to clear all game statistics? This action cannot be undone!')) {
             this.gameStats = {
                 totalGames: 0,
                 totalScore: 0,
@@ -363,7 +363,7 @@ class Game2048 {
             };
             this.saveGameStats();
             this.updateStatsDisplay();
-            alert('统计数据已清除！');
+            alert('Statistics cleared!');
         }
     }
     
