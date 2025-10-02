@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <title>2048 Game - Free Online Number Puzzle | Classic 2048</title>
+    <meta name="description" content="Play 2048 game online for free! Classic number puzzle game, merge same numbers to reach 2048. Easy to learn, challenge your logical thinking. Support mobile and desktop, start playing now!">
+    <meta name="keywords" content="2048 game,2048 online,number game,puzzle game,free game,online game,2048 classic">
+    <meta name="author" content="game2048.vip">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    <meta name="revisit-after" content="1 days">
+    <meta name="rating" content="general">
+    <meta name="distribution" content="global">
+    <meta name="language" content="en">
+    <meta name="geo.region" content="US">
+    <meta name="geo.placename" content="United States">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://game2048.vip/">
+    <meta property="og:title" content="2048 Game - Free Online Number Puzzle">
+    <meta property="og:description" content="Play 2048 game online for free! Classic number puzzle game, merge same numbers to reach 2048. Easy to learn, challenge your logical thinking.">
+    <meta property="og:image" content="https://game2048.vip/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://game2048.vip/">
+    <meta property="twitter:title" content="2048 Game - Free Online Number Puzzle">
+    <meta property="twitter:description" content="Play 2048 game online for free! Classic number puzzle game, merge same numbers to reach 2048.">
+    <meta property="twitter:image" content="https://game2048.vip/og-image.jpg">
+    
+    <!-- 移动端优化 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="2048 Game">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    
+    <!-- 图标 -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- 预加载关键资源 -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- 临时引用，用于开发测试 -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- 关键CSS内联优化 -->
+    <style>
+        /* 关键渲染路径优化 */
+        .container { 
+            text-align: center; 
+            background: rgba(255, 255, 255, 0.95); 
+            border-radius: 20px; 
+            padding: 30px; 
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); 
+            max-width: 800px; 
+            width: 100%; 
+            margin: 0 auto; 
+        }
+        .game-board { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            grid-template-rows: repeat(4, 1fr); 
+            gap: 20px; 
+            background: #bbada0; 
+            padding: 20px; 
+            border-radius: 10px; 
+            width: 600px; 
+            height: 600px; 
+            max-width: 90vw;
+            max-height: 90vw;
+            aspect-ratio: 1;
+        }
+    </style>
+    
+    <!-- 结构化数据 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "2048 Game",
+        "description": "Free online 2048 number puzzle game",
+        "url": "https://game2048.vip",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "CNY"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Game2048.vip</h1>
+            <div class="header-controls">
+                <!-- 设置按钮 - 右上角 -->
+                <div class="settings-controls">
+                    <button id="sound-btn" class="sound-btn settings-btn" title="Toggle Sound">🔊</button>
+                    <button id="theme-btn" class="theme-btn settings-btn" data-theme="light" title="Toggle Theme">
+                        <span class="theme-text">🌙</span>
+                    </button>
+                </div>
+            </div>
+            <div class="score-container">
+                <div class="score-box">
+                    <div class="score-label">Score</div>
+                    <div class="score-value" id="score">0</div>
+                </div>
+                <div class="score-box">
+                    <div class="score-label">Best</div>
+                    <div class="score-value" id="best-score">0</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="above-game">
+            <p class="game-intro">Join the numbers and get to the <strong>2048 tile</strong>!</p>
+            <!-- 主要操作按钮 - 顶部显眼位置 -->
+            <div class="primary-controls">
+                <button id="new-game-btn" class="new-game-btn primary-btn">New Game</button>
+            </div>
+        </div>
+        
+        <div class="game-container">
+            <div class="game-board" id="game-board">
+                <!-- 游戏网格将通过JavaScript动态生成 -->
+            </div>
+        </div>
+        
+        <!-- 游戏控制按钮 - 游戏区域正下方 -->
+        <div class="game-controls">
+            <button id="undo-btn" class="undo-btn game-action-btn">↶ Undo (U)</button>
+            <button id="swap-btn" class="swap-btn game-action-btn">🔄 Swap (1 uses)</button>
+        </div>
+        
+        <div class="game-over" id="game-over" style="display: none;">
+            <div class="game-over-content">
+                <h2>Game Over!</h2>
+                <p>Final Score: <span id="final-score">0</span></p>
+                <div class="game-over-controls">
+                    <button id="restart-btn" class="restart-btn primary-btn">Try Again</button>
+                    <button id="share-btn" class="share-btn secondary-btn">📤 Share Score</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 游戏说明和SEO内容 -->
+    <div class="game-content">
+        <div class="game-explanation">
+            <p><strong>How to play 2048:</strong> Use your <strong>arrow keys</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong></p>
+        </div>
+        
+        <div class="game-details">
+            <div class="detail-section">
+                <h3>Game Rules</h3>
+                <p>Slide tiles on a 4x4 grid to merge same numbers and reach 2048. New 2 or 4 tiles appear after each move.</p>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Game Tips</h3>
+                <ul>
+                    <li>Keep large numbers in corners</li>
+                    <li>Arrange numbers in order</li>
+                    <li>Prioritize merging small numbers</li>
+                </ul>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Game Statistics</h3>
+                <div id="game-stats">
+                    <p>Total Games: <span id="total-games">0</span></p>
+                    <p>Average Score: <span id="average-score">0</span></p>
+                    <p>Games Won: <span id="games-won">0</span></p>
+                    <p>Highest Tile: <span id="highest-tile">0</span></p>
+                </div>
+                <button id="clear-stats-btn" class="clear-stats-btn">Clear Stats</button>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Game Features</h3>
+                <ul>
+                    <li>✅ Completely Free</li>
+                    <li>✅ Mobile & Desktop Support</li>
+                    <li>✅ Easy to Learn</li>
+                    <li>✅ Challenge Your Mind</li>
+                    <li>✅ Auto-save Progress</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- SEO Content Section -->
+        <div class="seo-content">
+            <div class="content-section">
+                <h2>What is 2048 Game?</h2>
+                <p><strong>2048</strong> is an easy and fun puzzle game created by Gabriele Cirulli. Even if you don't love numbers you will love this classic game. It is played on a 4x4 grid using the arrow keys or W, A, S, D keys alternatively. Every time you press a key - all tiles slide. Tiles with the same value that bump into one-another are merged.</p>
+                <p>Although there might be an optimal strategy to play, there is always some level of chance. If you beat the game and would like to master it, try to finish with a smaller score. That would mean that you finished with less moves.</p>
+            </div>
+            
+            <div class="content-section">
+                <h2>2048 Game History</h2>
+                <p>The original 2048 game was created by <strong>Gabriele Cirulli</strong> in March 2014. It was inspired by the game "1024" and "Threes!" The game became an instant hit and has been played by millions of people worldwide.</p>
+                <p>This <strong>2048 classic</strong> game is mobile compatible and you can play it on any device - iPhone, iPad or any other smartphone. The game is completely free and requires no registration.</p>
+            </div>
+            
+            <div class="content-section">
+                <h2>How to Play 2048 - Complete Guide</h2>
+                <h3>Basic Controls:</h3>
+                <ul>
+                    <li><strong>Arrow Keys:</strong> Use ↑ ↓ ← → to move tiles</li>
+                    <li><strong>WASD Keys:</strong> Alternative control scheme (W=Up, A=Left, S=Down, D=Right)</li>
+                    <li><strong>Touch/Swipe:</strong> On mobile devices, swipe in the direction you want to move</li>
+                </ul>
+                
+                <h3>Game Objective:</h3>
+                <p>Your goal is to reach the <strong>2048 tile</strong> by combining numbered tiles. When two tiles with the same number touch, they merge into one tile with double the value!</p>
+                
+                <h3>Advanced Strategies:</h3>
+                <ul>
+                    <li><strong>Corner Strategy:</strong> Keep your highest value tile in one corner</li>
+                    <li><strong>Snake Pattern:</strong> Arrange tiles in a snake-like pattern</li>
+                    <li><strong>Edge Priority:</strong> Always try to keep large numbers on the edges</li>
+                    <li><strong>Patience:</strong> Don't rush - think before each move</li>
+                </ul>
+            </div>
+            
+            <div class="content-section">
+                <h2>2048 Game Variations</h2>
+                <p>Since the original 2048 game became popular, many variations have been created:</p>
+                <ul>
+                    <li><strong>2048 Original:</strong> The classic version with 2 and 4 tiles</li>
+                    <li><strong>2048 Fibonacci:</strong> Uses Fibonacci sequence numbers</li>
+                    <li><strong>2048 Letters:</strong> Uses letters instead of numbers</li>
+                    <li><strong>2048 Colors:</strong> Color-coded tiles for visual appeal</li>
+                    <li><strong>2048 3D:</strong> Three-dimensional version</li>
+                </ul>
+            </div>
+            
+            <div class="content-section">
+                <h2>Why 2048 is Addictive?</h2>
+                <p>2048 has become one of the most addictive puzzle games because:</p>
+                <ul>
+                    <li><strong>Simple Rules:</strong> Easy to understand but hard to master</li>
+                    <li><strong>Quick Games:</strong> Each game takes only a few minutes</li>
+                    <li><strong>Progressive Difficulty:</strong> Gets harder as you progress</li>
+                    <li><strong>Clear Goal:</strong> Reaching 2048 is a satisfying achievement</li>
+                    <li><strong>No Time Pressure:</strong> Take your time to think</li>
+                </ul>
+            </div>
+            
+            <div class="content-section">
+                <h2>2048 Game Tips for Beginners</h2>
+                <h3>Essential Tips:</h3>
+                <ol>
+                    <li><strong>Start Small:</strong> Focus on creating 8, 16, 32 tiles first</li>
+                    <li><strong>One Direction:</strong> Stick to one main direction (preferably down or right)</li>
+                    <li><strong>Corner Strategy:</strong> Keep your highest tile in a corner</li>
+                    <li><strong>Don't Mix:</strong> Avoid mixing large and small numbers</li>
+                    <li><strong>Plan Ahead:</strong> Think 2-3 moves ahead</li>
+                </ol>
+                
+                <h3>Common Mistakes to Avoid:</h3>
+                <ul>
+                    <li>Moving randomly without a strategy</li>
+                    <li>Mixing large numbers in the middle</li>
+                    <li>Not keeping the highest tile in a corner</li>
+                    <li>Rushing through moves without thinking</li>
+                </ul>
+            </div>
+            
+            <div class="content-section">
+                <h2>2048 Game Online - Play Free</h2>
+                <p>Play the best <strong>2048 game online</strong> completely free! Our version includes:</p>
+                <ul>
+                    <li>✅ <strong>No Registration Required</strong> - Start playing immediately</li>
+                    <li>✅ <strong>Mobile Optimized</strong> - Perfect on phones and tablets</li>
+                    <li>✅ <strong>Auto-Save Progress</strong> - Your high score is saved automatically</li>
+                    <li>✅ <strong>Statistics Tracking</strong> - Monitor your improvement</li>
+                    <li>✅ <strong>Classic Gameplay</strong> - Authentic 2048 experience</li>
+                    <li>✅ <strong>Responsive Design</strong> - Works on all devices</li>
+                </ul>
+            </div>
+            
+            <div class="content-section">
+                <h2>Frequently Asked Questions</h2>
+                <h3>Q: What is the highest possible tile in 2048?</h3>
+                <p>A: Theoretically, there's no limit, but practically, 131072 is considered the highest achievable tile.</p>
+                
+                <h3>Q: Is 2048 game free to play?</h3>
+                <p>A: Yes, our 2048 game is completely free with no hidden costs or in-app purchases.</p>
+                
+                <h3>Q: Can I play 2048 on my phone?</h3>
+                <p>A: Absolutely! Our game is fully optimized for mobile devices with touch controls.</p>
+                
+                <h3>Q: How do I save my progress?</h3>
+                <p>A: Your high score and statistics are automatically saved in your browser's local storage.</p>
+                
+                <h3>Q: What's the best strategy for 2048?</h3>
+                <p>A: Keep your highest tile in a corner, use one main direction, and plan your moves carefully.</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>&copy; 2025 game2048.vip - Free Online 2048 Game | <a href="/privacy.html">Privacy Policy</a></p>
+    </footer>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    
+    <!-- 临时引用，用于开发测试 -->
+    <script src="../script.js"></script>
+</body>
+</html>
