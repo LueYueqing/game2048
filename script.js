@@ -518,6 +518,7 @@ class Game2048 {
         document.getElementById('score').textContent = this.score;
         this.updateTiles();
         this.updateStatsDisplay();
+        this.updateBestScore(); // 实时更新最佳分数
         this.updateUndoButton();
         this.updateSwapButton();
         this.checkForSwapUses();
@@ -709,6 +710,9 @@ class Game2048 {
     }
     
     showWinMessage() {
+        // 更新最佳分数
+        this.updateBestScore();
+        
         // 添加胜利动画
         const gameBoard = document.getElementById('game-board');
         gameBoard.classList.add('win-animation');
@@ -727,6 +731,7 @@ class Game2048 {
     
     showGameOver() {
         this.updateGameStats();
+        this.updateBestScore(); // 更新最佳分数
         document.getElementById('final-score').textContent = this.score;
         
         // 播放游戏结束音效
