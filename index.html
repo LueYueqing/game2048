@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <title>2048游戏 - 免费在线数字拼图游戏 | 经典2048</title>
+    <meta name="description" content="免费在线玩2048游戏！经典数字拼图游戏，通过合并相同数字达到2048。简单易学，挑战你的逻辑思维。支持手机和电脑，立即开始游戏！">
+    <meta name="keywords" content="2048游戏,2048在线,数字游戏,拼图游戏,免费游戏,在线游戏,2048中文版">
+    <meta name="author" content="2048.vip">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://game2048.vip/">
+    <meta property="og:title" content="2048游戏 - 免费在线数字拼图游戏">
+    <meta property="og:description" content="免费在线玩2048游戏！经典数字拼图游戏，通过合并相同数字达到2048。简单易学，挑战你的逻辑思维。">
+    <meta property="og:image" content="https://game2048.vip/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://game2048.vip/">
+    <meta property="twitter:title" content="2048游戏 - 免费在线数字拼图游戏">
+    <meta property="twitter:description" content="免费在线玩2048游戏！经典数字拼图游戏，通过合并相同数字达到2048。">
+    <meta property="twitter:image" content="https://game2048.vip/og-image.jpg">
+    
+    <!-- 移动端优化 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="2048游戏">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    
+    <!-- 图标 -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- 关键CSS内联优化 -->
+    <style>
+        /* 关键渲染路径优化 */
+        .container { 
+            text-align: center; 
+            background: rgba(255, 255, 255, 0.95); 
+            border-radius: 20px; 
+            padding: 30px; 
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); 
+            max-width: 500px; 
+            width: 100%; 
+            margin: 0 auto; 
+        }
+        .game-board { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            grid-template-rows: repeat(4, 1fr); 
+            gap: 10px; 
+            background: #bbada0; 
+            padding: 10px; 
+            border-radius: 10px; 
+            width: 400px; 
+            height: 400px; 
+        }
+    </style>
+    
+    <!-- 结构化数据 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "2048游戏",
+        "description": "免费在线2048数字拼图游戏",
+        "url": "https://game2048.vip",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "CNY"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>2048</h1>
+            <div class="score-container">
+                <div class="score-box">
+                    <div class="score-label">分数</div>
+                    <div class="score-value" id="score">0</div>
+                </div>
+                <div class="score-box">
+                    <div class="score-label">最高分</div>
+                    <div class="score-value" id="best-score">0</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="above-game">
+            <p class="game-intro">合并数字方块，达到 <strong>2048</strong>！</p>
+            <button id="new-game-btn" class="new-game-btn">新游戏</button>
+        </div>
+        
+        <div class="game-container">
+            <div class="game-board" id="game-board">
+                <!-- 游戏网格将通过JavaScript动态生成 -->
+            </div>
+        </div>
+        
+        <div class="game-over" id="game-over" style="display: none;">
+            <div class="game-over-content">
+                <h2>游戏结束！</h2>
+                <p>最终分数: <span id="final-score">0</span></p>
+                <button id="restart-btn" class="restart-btn">重新开始</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 游戏说明和SEO内容 -->
+    <div class="game-content">
+        <div class="game-explanation">
+            <p><strong>如何玩2048：</strong> 使用<strong>方向键</strong>移动方块。当两个相同数字的方块接触时，它们会<strong>合并成一个！</strong></p>
+        </div>
+        
+        <div class="game-details">
+            <div class="detail-section">
+                <h3>游戏规则</h3>
+                <p>在4x4网格上滑动方块，合并相同数字达到2048。每次移动后会出现新的2或4方块。</p>
+            </div>
+            
+            <div class="detail-section">
+                <h3>游戏技巧</h3>
+                <ul>
+                    <li>保持大数字在角落</li>
+                    <li>按顺序排列数字</li>
+                    <li>优先合并小数字</li>
+                </ul>
+            </div>
+            
+            <div class="detail-section">
+                <h3>游戏统计</h3>
+                <div id="game-stats">
+                    <p>总游戏次数: <span id="total-games">0</span></p>
+                    <p>平均分数: <span id="average-score">0</span></p>
+                    <p>获胜次数: <span id="games-won">0</span></p>
+                    <p>最高方块: <span id="highest-tile">0</span></p>
+                </div>
+                <button id="clear-stats-btn" class="clear-stats-btn">清除统计</button>
+            </div>
+            
+            <div class="detail-section">
+                <h3>游戏特色</h3>
+                <ul>
+                    <li>✅ 完全免费</li>
+                    <li>✅ 支持手机电脑</li>
+                    <li>✅ 简单易学</li>
+                    <li>✅ 挑战思维</li>
+                    <li>✅ 自动保存进度</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>&copy; 2025 game2048.vip - 免费在线2048游戏 | <a href="/privacy">隐私政策</a></p>
+    </footer>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    
+    <script src="script.js"></script>
+</body>
+</html>

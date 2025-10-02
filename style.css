@@ -1,0 +1,383 @@
+/* 性能优化：使用更高效的重置样式 */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #faf8ef;
+    min-height: 100vh;
+    color: #776e65;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    text-align: center;
+    background: #faf8ef;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    border: 1px solid #d6d6d6;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: bold;
+    color: #776e65;
+    text-shadow: none;
+}
+
+.score-container {
+    display: flex;
+    gap: 10px;
+}
+
+.score-box {
+    background: #bbada0;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 80px;
+}
+
+.score-label {
+    font-size: 0.8em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.score-value {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+.above-game {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.game-intro {
+    color: #776e65;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    line-height: 1.5;
+}
+
+.new-game-btn, .restart-btn {
+    background: #8f7a66;
+    color: #f9f6f2;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.new-game-btn:hover, .restart-btn:hover {
+    background: #9f8a76;
+}
+
+.clear-stats-btn {
+    background: #f67c5f;
+    color: #f9f6f2;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+}
+
+.clear-stats-btn:hover {
+    background: #f65e3b;
+}
+
+.game-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+    background: #bbada0;
+    padding: 10px;
+    border-radius: 10px;
+    width: 400px;
+    height: 400px;
+}
+
+.cell {
+    background: rgba(238, 228, 218, 0.35);
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.tile {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    animation: tileAppear 0.3s ease;
+}
+
+@keyframes tileAppear {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* 不同数字的方块颜色 */
+.tile-2 { background: #eee4da; color: #776e65; }
+.tile-4 { background: #ede0c8; color: #776e65; }
+.tile-8 { background: #f2b179; color: #f9f6f2; }
+.tile-16 { background: #f59563; color: #f9f6f2; }
+.tile-32 { background: #f67c5f; color: #f9f6f2; }
+.tile-64 { background: #f65e3b; color: #f9f6f2; }
+.tile-128 { background: #edcf72; color: #f9f6f2; font-size: 1.8em; }
+.tile-256 { background: #edcc61; color: #f9f6f2; font-size: 1.8em; }
+.tile-512 { background: #edc850; color: #f9f6f2; font-size: 1.8em; }
+.tile-1024 { background: #edc53f; color: #f9f6f2; font-size: 1.6em; }
+.tile-2048 { background: #edc22e; color: #f9f6f2; font-size: 1.6em; }
+
+.game-over {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.game-over-content {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.game-over-content h2 {
+    color: #776e65;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.game-over-content p {
+    color: #776e65;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+/* 移动端适配 */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .game-board {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .tile {
+        font-size: 1.5em;
+    }
+    
+    .tile-128, .tile-256, .tile-512 {
+        font-size: 1.3em;
+    }
+    
+    .tile-1024, .tile-2048 {
+        font-size: 1.1em;
+    }
+    
+    h1 {
+        font-size: 2.5em;
+    }
+    
+    .header {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    .game-board {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .tile {
+        font-size: 1.2em;
+    }
+    
+    .tile-128, .tile-256, .tile-512 {
+        font-size: 1em;
+    }
+    
+    .tile-1024, .tile-2048 {
+        font-size: 0.9em;
+    }
+}
+
+/* 游戏说明内容样式 */
+.game-content {
+    max-width: 800px;
+    margin: 2rem auto 0;
+    padding: 30px;
+    line-height: 1.6;
+    width: 100%;
+    background: #faf8ef;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #d6d6d6;
+}
+
+.game-explanation {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #eee4da;
+    border-radius: 6px;
+    border: 1px solid #d6d6d6;
+}
+
+.game-explanation p {
+    color: #776e65;
+    font-size: 1.1em;
+    margin: 0;
+}
+
+.game-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.detail-section {
+    background: #eee4da;
+    padding: 1.5rem;
+    border-radius: 6px;
+    border: 1px solid #d6d6d6;
+}
+
+.detail-section h3 {
+    color: #776e65;
+    margin-bottom: 1rem;
+    font-size: 1.2em;
+    border-bottom: 2px solid #bbada0;
+    padding-bottom: 0.5rem;
+}
+
+.detail-section p {
+    color: #776e65;
+    margin-bottom: 1rem;
+    font-size: 0.95em;
+}
+
+.detail-section ul {
+    color: #776e65;
+    padding-left: 1.2rem;
+    margin: 0;
+}
+
+.detail-section li {
+    margin-bottom: 0.4rem;
+    font-size: 0.9em;
+}
+
+.footer {
+    text-align: center;
+    margin: 2rem auto;
+    padding: 1rem;
+    color: #776e65;
+    font-size: 0.9em;
+}
+
+.footer a {
+    color: #776e65;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* 移动端优化 */
+@media (max-width: 600px) {
+    .game-content {
+        padding: 0 10px;
+    }
+    
+    .game-details {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .detail-section {
+        padding: 1rem;
+    }
+    
+    .detail-section h3 {
+        font-size: 1.1em;
+    }
+    
+    .game-explanation {
+        padding: 0.8rem;
+    }
+    
+    .game-explanation p {
+        font-size: 1em;
+    }
+}
