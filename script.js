@@ -6,6 +6,11 @@ class Game2048 {
         this.gameOver = false;
         this.won = false;
         this.gameStats = this.loadGameStats();
+        this.history = []; // 存储游戏历史状态
+        this.historyIndex = -1; // 当前历史索引
+        this.swapUses = 1; // 交换次数
+        this.swapMode = false; // 是否处于交换模式
+        this.selectedTile = null; // 选中的方块
         
         this.init();
     }
@@ -15,6 +20,7 @@ class Game2048 {
         this.updateDisplay();
         this.addRandomTile();
         this.addRandomTile();
+        this.saveState(); // 保存初始状态
         this.bindEvents();
         this.updateBestScore();
     }
@@ -58,6 +64,18 @@ class Game2048 {
         const tile = document.createElement('div');
         tile.className = `tile tile-${value}`;
         tile.textContent = value;
+        
+        // 添加点击事件用于交换模式
+        if (this.swapMode) {
+            tile.style.cursor = 'pointer';
+            tile.addEventListener('click', () => this.selectTile(row, col));
+        }
+        
+        // 高亮选中的方块
+        if (this.selectedTile && this.selectedTile.row === row && this.selectedTile.col === col) {
+            tile.style.boxShadow = '0 0 0 3px #ff6b6b';
+        }
+        
         cell.appendChild(tile);
     }
     
@@ -100,6 +118,7 @@ class Game2048 {
         
         if (moved) {
             this.addRandomTile();
+            this.saveState(); // 保存移动后的状态
             this.updateDisplay();
             this.checkGameOver();
         }
@@ -249,6 +268,117 @@ class Game2048 {
         document.getElementById('score').textContent = this.score;
         this.updateTiles();
         this.updateStatsDisplay();
+        this.updateUndoButton();
+        this.updateSwapButton();
+        this.checkForSwapUses();
+    }
+    
+    saveState() {
+        // 保存当前游戏状态到历史记录
+        const state = {
+            board: this.board.map(row => [...row]),
+            score: this.score,
+            gameOver: this.gameOver,
+            won: this.won
+        };
+        
+        // 删除当前位置之后的所有历史记录
+        this.history = this.history.slice(0, this.historyIndex + 1);
+        
+        // 添加新状态
+        this.history.push(state);
+        this.historyIndex = this.history.length - 1;
+        
+        // 限制历史记录数量（最多保存50步）
+        if (this.history.length > 50) {
+            this.history.shift();
+            this.historyIndex--;
+        }
+    }
+    
+    undo() {
+        if (this.historyIndex > 0) {
+            this.historyIndex--;
+            const state = this.history[this.historyIndex];
+            
+            this.board = state.board.map(row => [...row]);
+            this.score = state.score;
+            this.gameOver = state.gameOver;
+            this.won = state.won;
+            
+            this.updateDisplay();
+            this.updateBestScore();
+        }
+    }
+    
+    updateUndoButton() {
+        const undoBtn = document.getElementById('undo-btn');
+        if (undoBtn) {
+            undoBtn.disabled = this.historyIndex <= 0;
+        }
+    }
+    
+    toggleSwapMode() {
+        if (this.swapUses <= 0) {
+            alert('No swap uses remaining! Make a 256 tile to get more uses.');
+            return;
+        }
+        
+        this.swapMode = !this.swapMode;
+        this.selectedTile = null;
+        this.updateSwapButton();
+        this.updateTiles();
+    }
+    
+    selectTile(row, col) {
+        if (!this.swapMode) return;
+        
+        if (this.selectedTile === null) {
+            // 选择第一个方块
+            this.selectedTile = { row, col };
+            this.updateTiles();
+        } else {
+            // 选择第二个方块，进行交换
+            if (this.selectedTile.row === row && this.selectedTile.col === col) {
+                // 取消选择
+                this.selectedTile = null;
+            } else {
+                // 执行交换
+                this.swapTiles(this.selectedTile.row, this.selectedTile.col, row, col);
+                this.swapUses--;
+                this.swapMode = false;
+                this.selectedTile = null;
+                this.saveState();
+                this.updateDisplay();
+            }
+        }
+    }
+    
+    swapTiles(row1, col1, row2, col2) {
+        const temp = this.board[row1][col1];
+        this.board[row1][col1] = this.board[row2][col2];
+        this.board[row2][col2] = temp;
+    }
+    
+    updateSwapButton() {
+        const swapBtn = document.getElementById('swap-btn');
+        if (swapBtn) {
+            swapBtn.textContent = this.swapMode ? 'Cancel Swap' : `Swap Tiles (${this.swapUses} uses)`;
+            swapBtn.disabled = this.swapUses <= 0;
+        }
+    }
+    
+    checkForSwapUses() {
+        // 检查是否达到了256方块，给予更多交换次数
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                if (this.board[i][j] === 256) {
+                    this.swapUses += 2; // 获得2次额外交换机会
+                    this.updateSwapButton();
+                    return;
+                }
+            }
+        }
     }
     
     updateStatsDisplay() {
@@ -389,6 +519,11 @@ class Game2048 {
                     e.preventDefault();
                     this.move('down');
                     break;
+                case 'u':
+                case 'U':
+                    e.preventDefault();
+                    this.undo();
+                    break;
             }
         });
         
@@ -442,6 +577,22 @@ class Game2048 {
         document.getElementById('clear-stats-btn').addEventListener('click', () => {
             this.clearStats();
         });
+        
+        // 添加撤销按钮事件
+        const undoBtn = document.getElementById('undo-btn');
+        if (undoBtn) {
+            undoBtn.addEventListener('click', () => {
+                this.undo();
+            });
+        }
+        
+        // 添加交换按钮事件
+        const swapBtn = document.getElementById('swap-btn');
+        if (swapBtn) {
+            swapBtn.addEventListener('click', () => {
+                this.toggleSwapMode();
+            });
+        }
     }
 }
 

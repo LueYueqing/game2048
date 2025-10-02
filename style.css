@@ -83,7 +83,7 @@ h1 {
     line-height: 1.5;
 }
 
-.new-game-btn, .restart-btn {
+.new-game-btn, .restart-btn, .undo-btn, .swap-btn {
     background: #8f7a66;
     color: #f9f6f2;
     border: none;
@@ -95,8 +95,21 @@ h1 {
     transition: all 0.2s ease;
 }
 
-.new-game-btn:hover, .restart-btn:hover {
+.new-game-btn:hover, .restart-btn:hover, .undo-btn:hover, .swap-btn:hover {
     background: #9f8a76;
+}
+
+.undo-btn:disabled, .swap-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.game-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
 }
 
 .clear-stats-btn {
