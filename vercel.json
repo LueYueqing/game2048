@@ -9,6 +9,7 @@
       }
     }
   ],
+  "buildCommand": "npm run vercel-build",
   "headers": [
     {
       "source": "/(.*)",
