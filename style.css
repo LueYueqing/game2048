@@ -363,6 +363,186 @@ h1 {
     text-decoration: underline;
 }
 
+/* SEO内容样式 */
+.seo-content {
+    margin-top: 2rem;
+}
+
+.content-section {
+    background: #faf8ef;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #d6d6d6;
+}
+
+.content-section h2 {
+    color: #776e65;
+    font-size: 1.8em;
+    margin-bottom: 1rem;
+    border-bottom: 3px solid #bbada0;
+    padding-bottom: 0.5rem;
+}
+
+.content-section h3 {
+    color: #776e65;
+    font-size: 1.3em;
+    margin: 1.5rem 0 1rem 0;
+    border-bottom: 2px solid #bbada0;
+    padding-bottom: 0.3rem;
+}
+
+.content-section p {
+    color: #776e65;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    font-size: 1.05em;
+}
+
+.content-section ul, .content-section ol {
+    color: #776e65;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.content-section li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.content-section strong {
+    color: #8f7a66;
+    font-weight: bold;
+}
+
+/* 面包屑导航样式 */
+.breadcrumb {
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+}
+
+.breadcrumb ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.breadcrumb li {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb li:not(:last-child)::after {
+    content: "›";
+    margin: 0 0.5rem;
+    color: #8f7a66;
+}
+
+.breadcrumb a {
+    color: #8f7a66;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb li[aria-current="page"] {
+    color: #776e65;
+    font-weight: bold;
+}
+
+/* 隐私政策页面样式 */
+.privacy-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.privacy-section {
+    background: #faf8ef;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #d6d6d6;
+}
+
+.privacy-section h2 {
+    color: #776e65;
+    font-size: 1.6em;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #bbada0;
+    padding-bottom: 0.5rem;
+}
+
+.privacy-section h3 {
+    color: #776e65;
+    font-size: 1.2em;
+    margin: 1.5rem 0 1rem 0;
+    border-bottom: 1px solid #bbada0;
+    padding-bottom: 0.3rem;
+}
+
+.privacy-section p {
+    color: #776e65;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    font-size: 1.05em;
+}
+
+.privacy-section ul {
+    color: #776e65;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.privacy-section li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.privacy-section a {
+    color: #8f7a66;
+    text-decoration: none;
+}
+
+.privacy-section a:hover {
+    text-decoration: underline;
+}
+
+.last-updated {
+    color: #8f7a66;
+    font-style: italic;
+    font-size: 0.9em;
+    margin-top: 0.5rem;
+}
+
+.back-to-game {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.back-button {
+    display: inline-block;
+    background: #8f7a66;
+    color: #f9f6f2;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.back-button:hover {
+    background: #9f8a76;
+    text-decoration: none;
+}
+
 /* 移动端优化 */
 @media (max-width: 600px) {
     .game-content {
@@ -388,5 +568,43 @@ h1 {
     
     .game-explanation p {
         font-size: 1em;
+    }
+    
+    .content-section {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .content-section h2 {
+        font-size: 1.5em;
+    }
+    
+    .content-section h3 {
+        font-size: 1.2em;
+    }
+    
+    .content-section p {
+        font-size: 1em;
+    }
+    
+    .privacy-section {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .privacy-section h2 {
+        font-size: 1.4em;
+    }
+    
+    .privacy-section h3 {
+        font-size: 1.1em;
+    }
+    
+    .privacy-section p {
+        font-size: 1em;
+    }
+    
+    .breadcrumb {
+        font-size: 0.8em;
     }
 }
