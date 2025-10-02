@@ -9,6 +9,7 @@
     "build:seo": "webpack --config webpack.seo.config.js",
     "build:prod": "webpack --config webpack.production.config.js",
     "build:obfuscated": "OBFUSCATE=true webpack --config webpack.production.config.js",
+    "vercel-build": "npm run build:seo",
     "serve": "webpack serve --mode development",
     "clean": "rimraf dist",
     "analyze": "webpack-bundle-analyzer dist/main.*.bundle.js",
