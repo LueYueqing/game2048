@@ -110,6 +110,15 @@
         
         <div class="header">
             <h1>Game2048.vip</h1>
+            <div class="header-controls">
+                <!-- 设置按钮 - 右上角 -->
+                <div class="settings-controls">
+                    <button id="sound-btn" class="sound-btn settings-btn" title="Toggle Sound">🔊</button>
+                    <button id="theme-btn" class="theme-btn settings-btn" data-theme="light" title="Toggle Theme">
+                        <span class="theme-text">🌙</span>
+                    </button>
+                </div>
+            </div>
             <div class="score-container">
                 <div class="score-box">
                     <div class="score-label">Score</div>
@@ -124,15 +133,9 @@
         
         <div class="above-game">
             <p class="game-intro">Join the numbers and get to the <strong>2048 tile</strong>!</p>
-            <div class="game-controls">
-                <button id="new-game-btn" class="new-game-btn">New Game</button>
-                <button id="undo-btn" class="undo-btn">Undo (U)</button>
-                <button id="swap-btn" class="swap-btn">Swap Tiles (1 uses)</button>
-                <button id="sound-btn" class="sound-btn">🔊 Sound</button>
-                <button id="theme-btn" class="theme-btn" data-theme="light">
-                    <span class="theme-text">Light</span>
-                </button>
-                <button id="share-btn" class="share-btn">📤 Share</button>
+            <!-- 主要操作按钮 - 顶部显眼位置 -->
+            <div class="primary-controls">
+                <button id="new-game-btn" class="new-game-btn primary-btn">New Game</button>
             </div>
         </div>
         
@@ -140,13 +143,22 @@
             <div class="game-board" id="game-board">
                 <!-- 游戏网格将通过JavaScript动态生成 -->
             </div>
+            
+            <!-- 游戏控制按钮 - 游戏区域下方 -->
+            <div class="game-controls">
+                <button id="undo-btn" class="undo-btn secondary-btn">↶ Undo (U)</button>
+                <button id="swap-btn" class="swap-btn secondary-btn">🔄 Swap Tiles (1 uses)</button>
+            </div>
         </div>
         
         <div class="game-over" id="game-over" style="display: none;">
             <div class="game-over-content">
                 <h2>Game Over!</h2>
                 <p>Final Score: <span id="final-score">0</span></p>
-                <button id="restart-btn" class="restart-btn">Try Again</button>
+                <div class="game-over-controls">
+                    <button id="restart-btn" class="restart-btn primary-btn">Try Again</button>
+                    <button id="share-btn" class="share-btn secondary-btn">📤 Share Score</button>
+                </div>
             </div>
         </div>
     </div>

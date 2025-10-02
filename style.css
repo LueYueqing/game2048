@@ -36,6 +36,20 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    position: relative;
+}
+
+.header-controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.settings-controls {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
 }
 
 h1 {
@@ -317,40 +331,104 @@ body {
     color: var(--tile-text);
 }
 
+/* 按钮基础样式 */
 .new-game-btn, .restart-btn, .undo-btn, .swap-btn, .sound-btn, .theme-btn, .share-btn {
     background: var(--button-bg);
+    color: #f9f6f2;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.new-game-btn:hover, .restart-btn:hover, .undo-btn:hover, .swap-btn:hover, .sound-btn:hover, .theme-btn:hover, .share-btn:hover {
+/* 主要按钮 - 显眼、大尺寸 */
+.primary-btn {
+    padding: 16px 32px;
+    font-size: 1.2em;
+    background: #8f7a66;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.primary-btn:hover {
+    background: #9f8a76;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* 次要按钮 - 中等尺寸 */
+.secondary-btn {
+    padding: 12px 20px;
+    font-size: 1em;
+    background: #8f7a66;
+}
+
+.secondary-btn:hover {
+    background: #9f8a76;
+    transform: translateY(-1px);
+}
+
+/* 设置按钮 - 小尺寸、圆形 */
+.settings-btn {
+    padding: 10px;
+    font-size: 1.2em;
+    background: var(--button-bg);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings-btn:hover {
     background: var(--button-hover);
+    transform: scale(1.1);
 }
 
-/* 主题切换按钮 */
+/* 主要控制区域 */
+.primary-controls {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+/* 游戏控制区域 */
+.game-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+/* 游戏结束控制区域 */
+.game-over-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* 主题切换按钮 - 设置按钮样式 */
 .theme-btn {
     position: relative;
     overflow: hidden;
 }
 
-.theme-btn::before {
-    content: '🌙';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.3s ease;
-}
-
-.theme-btn[data-theme="dark"]::before {
-    content: '☀️';
-}
-
 .theme-btn .theme-text {
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: all 0.3s ease;
+    font-size: 1.2em;
 }
 
-.theme-btn[data-theme="dark"] .theme-text {
-    opacity: 1;
+/* 音效按钮状态 */
+.sound-btn.muted {
+    background: #f67c5f;
+}
+
+.sound-btn.muted:hover {
+    background: #f78c6c;
 }
 
 /* 不同数字的方块颜色 */
@@ -752,6 +830,43 @@ body {
     .content-section {
         padding: 1.5rem;
         margin-bottom: 1.5rem;
+    }
+    
+    /* 移动端按钮布局 */
+    .header-controls {
+        position: static;
+        margin-bottom: 10px;
+    }
+    
+    .settings-controls {
+        justify-content: center;
+    }
+    
+    .primary-btn {
+        padding: 14px 28px;
+        font-size: 1.1em;
+    }
+    
+    .secondary-btn {
+        padding: 10px 16px;
+        font-size: 0.9em;
+    }
+    
+    .settings-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1em;
+    }
+    
+    .game-controls {
+        gap: 10px;
+        margin: 15px 0;
+    }
+    
+    .game-over-controls {
+        gap: 10px;
+        flex-direction: column;
+        align-items: center;
     }
     
     .content-section h2 {

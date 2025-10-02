@@ -115,7 +115,7 @@ class Game2048 {
             themeBtn.setAttribute('data-theme', this.currentTheme);
             const themeText = themeBtn.querySelector('.theme-text');
             if (themeText) {
-                themeText.textContent = this.currentTheme === 'light' ? 'Light' : 'Dark';
+                themeText.textContent = this.currentTheme === 'light' ? '🌙' : '☀️';
             }
         }
     }
@@ -996,12 +996,12 @@ class Game2048 {
         if (soundBtn) {
             soundBtn.addEventListener('click', () => {
                 const enabled = this.soundManager.toggle();
-                soundBtn.textContent = enabled ? '🔊 Sound' : '🔇 Sound';
+                soundBtn.textContent = enabled ? '🔊' : '🔇';
                 soundBtn.classList.toggle('muted', !enabled);
             });
             
             // 初始化音效按钮状态
-            soundBtn.textContent = this.soundManager.enabled ? '🔊 Sound' : '🔇 Sound';
+            soundBtn.textContent = this.soundManager.enabled ? '🔊' : '🔇';
             soundBtn.classList.toggle('muted', !this.soundManager.enabled);
         }
         
@@ -1016,7 +1016,7 @@ class Game2048 {
             themeBtn.setAttribute('data-theme', this.currentTheme);
             const themeText = themeBtn.querySelector('.theme-text');
             if (themeText) {
-                themeText.textContent = this.currentTheme === 'light' ? 'Light' : 'Dark';
+                themeText.textContent = this.currentTheme === 'light' ? '🌙' : '☀️';
             }
         }
         
