@@ -34,7 +34,7 @@ body {
 .header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 20px;
     position: relative;
 }
@@ -52,11 +52,20 @@ body {
     margin-bottom: 10px;
 }
 
+/* 确保分数区域有足够的空间 */
+.score-container {
+    margin-top: 60px; /* 为设置按钮留出更多空间 */
+    margin-right: 100px; /* 为右侧设置按钮留出空间 */
+}
+
+/* 调整标题位置，避免与设置按钮重叠 */
 h1 {
     font-size: 3em;
     font-weight: bold;
     color: #776e65;
     text-shadow: none;
+    margin: 0;
+    margin-right: 100px; /* 为右侧设置按钮留出空间 */
 }
 
 .score-container {
@@ -852,13 +861,23 @@ body {
     }
     
     /* 移动端按钮布局 */
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+    
     .header-controls {
         position: static;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
+        order: -1; /* 将设置按钮放在最上面 */
     }
     
     .settings-controls {
         justify-content: center;
+    }
+    
+    .score-container {
+        margin-top: 0; /* 移动端不需要额外间距 */
     }
     
     .primary-btn {
