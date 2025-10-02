@@ -83,7 +83,7 @@ h1 {
     line-height: 1.5;
 }
 
-.new-game-btn, .restart-btn, .undo-btn, .swap-btn {
+.new-game-btn, .restart-btn, .undo-btn, .swap-btn, .sound-btn {
     background: #8f7a66;
     color: #f9f6f2;
     border: none;
@@ -95,13 +95,21 @@ h1 {
     transition: all 0.2s ease;
 }
 
-.new-game-btn:hover, .restart-btn:hover, .undo-btn:hover, .swap-btn:hover {
+.new-game-btn:hover, .restart-btn:hover, .undo-btn:hover, .swap-btn:hover, .sound-btn:hover {
     background: #9f8a76;
 }
 
 .undo-btn:disabled, .swap-btn:disabled {
     background: #ccc;
     cursor: not-allowed;
+}
+
+.sound-btn.muted {
+    background: #f67c5f;
+}
+
+.sound-btn.muted:hover {
+    background: #f78c6c;
 }
 
 .game-controls {
@@ -185,6 +193,164 @@ h1 {
         transform: scale(1);
         opacity: 1;
     }
+}
+
+/* 增强动画效果 */
+.tile-moving {
+    transition: transform 150ms ease-out !important;
+}
+
+.tile-merging {
+    animation: mergeAnimation 200ms ease-out;
+}
+
+.tile-appearing {
+    animation: appearAnimation 200ms ease-out;
+}
+
+.tile-disappearing {
+    animation: disappearAnimation 150ms ease-in;
+}
+
+/* 移动动画 */
+@keyframes moveAnimation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* 合并动画 */
+@keyframes mergeAnimation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* 出现动画 */
+@keyframes appearAnimation {
+    0% { 
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% { 
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% { 
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* 消失动画 */
+@keyframes disappearAnimation {
+    0% { 
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% { 
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+/* 游戏结束动画 */
+.game-over-animation {
+    animation: gameOverShake 0.5s ease-in-out;
+}
+
+@keyframes gameOverShake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* 胜利动画 */
+.win-animation {
+    animation: winPulse 1s ease-in-out infinite;
+}
+
+@keyframes winPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* 主题切换 */
+:root {
+    --bg-color: #faf8ef;
+    --text-color: #776e65;
+    --tile-bg: #eee4da;
+    --tile-text: #776e65;
+    --board-bg: #bbada0;
+    --button-bg: #8f7a66;
+    --button-hover: #9f8a76;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #d4d4d4;
+    --tile-bg: #2d2d2d;
+    --tile-text: #d4d4d4;
+    --board-bg: #3c3c3c;
+    --button-bg: #4a4a4a;
+    --button-hover: #5a5a5a;
+    --shadow: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.container, .game-content {
+    background: var(--bg-color);
+    border-color: var(--shadow);
+}
+
+.game-board {
+    background: var(--board-bg);
+}
+
+.tile {
+    background: var(--tile-bg);
+    color: var(--tile-text);
+}
+
+.new-game-btn, .restart-btn, .undo-btn, .swap-btn, .sound-btn, .theme-btn, .share-btn {
+    background: var(--button-bg);
+}
+
+.new-game-btn:hover, .restart-btn:hover, .undo-btn:hover, .swap-btn:hover, .sound-btn:hover, .theme-btn:hover, .share-btn:hover {
+    background: var(--button-hover);
+}
+
+/* 主题切换按钮 */
+.theme-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-btn::before {
+    content: '🌙';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+
+.theme-btn[data-theme="dark"]::before {
+    content: '☀️';
+}
+
+.theme-btn .theme-text {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.theme-btn[data-theme="dark"] .theme-text {
+    opacity: 1;
 }
 
 /* 不同数字的方块颜色 */

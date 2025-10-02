@@ -1,3 +1,75 @@
+// 音效管理类
+class SoundManager {
+    constructor() {
+        this.sounds = {};
+        this.enabled = localStorage.getItem('2048-sound-enabled') !== 'false';
+        this.initSounds();
+    }
+    
+    initSounds() {
+        // 创建音效上下文
+        try {
+            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        } catch (e) {
+            console.warn('Web Audio API not supported');
+            return;
+        }
+        
+        // 生成音效
+        this.sounds = {
+            move: this.createTone(200, 0.1, 'sine'),
+            merge: this.createTone(400, 0.2, 'square'),
+            win: this.createMelody([523, 659, 784, 1047], 0.3),
+            gameOver: this.createTone(150, 0.5, 'sawtooth')
+        };
+    }
+    
+    createTone(frequency, duration, type = 'sine') {
+        return () => {
+            if (!this.enabled || !this.audioContext) return;
+            
+            const oscillator = this.audioContext.createOscillator();
+            const gainNode = this.audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(this.audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(frequency, this.audioContext.currentTime);
+            oscillator.type = type;
+            
+            gainNode.gain.setValueAtTime(0.1, this.audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + duration);
+            
+            oscillator.start(this.audioContext.currentTime);
+            oscillator.stop(this.audioContext.currentTime + duration);
+        };
+    }
+    
+    createMelody(frequencies, noteDuration) {
+        return () => {
+            if (!this.enabled || !this.audioContext) return;
+            
+            frequencies.forEach((freq, index) => {
+                setTimeout(() => {
+                    this.createTone(freq, noteDuration, 'sine')();
+                }, index * noteDuration * 1000);
+            });
+        };
+    }
+    
+    play(soundName) {
+        if (this.sounds[soundName]) {
+            this.sounds[soundName]();
+        }
+    }
+    
+    toggle() {
+        this.enabled = !this.enabled;
+        localStorage.setItem('2048-sound-enabled', this.enabled);
+        return this.enabled;
+    }
+}
+
 class Game2048 {
     constructor() {
         this.board = [];
@@ -11,18 +83,186 @@ class Game2048 {
         this.swapUses = 1; // 交换次数
         this.swapMode = false; // 是否处于交换模式
         this.selectedTile = null; // 选中的方块
+        this.soundManager = new SoundManager(); // 音效管理器
+        this.currentTheme = localStorage.getItem('2048-theme') || 'light'; // 当前主题
         
         this.init();
     }
     
     init() {
         this.createBoard();
+        this.applyTheme(); // 应用主题
         this.updateDisplay();
         this.addRandomTile();
         this.addRandomTile();
         this.saveState(); // 保存初始状态
         this.bindEvents();
         this.updateBestScore();
+    }
+    
+    applyTheme() {
+        document.documentElement.setAttribute('data-theme', this.currentTheme);
+    }
+    
+    toggleTheme() {
+        this.currentTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+        localStorage.setItem('2048-theme', this.currentTheme);
+        this.applyTheme();
+        
+        // 更新主题按钮
+        const themeBtn = document.getElementById('theme-btn');
+        if (themeBtn) {
+            themeBtn.setAttribute('data-theme', this.currentTheme);
+            const themeText = themeBtn.querySelector('.theme-text');
+            if (themeText) {
+                themeText.textContent = this.currentTheme === 'light' ? 'Light' : 'Dark';
+            }
+        }
+    }
+    
+    shareScore(platform) {
+        const score = this.score;
+        const bestScore = this.bestScore;
+        const url = window.location.href;
+        
+        let shareText = '';
+        let shareUrl = '';
+        
+        switch(platform) {
+            case 'twitter':
+                shareText = `I just scored ${score} points in 2048! Can you beat my score? Play now: ${url}`;
+                shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+                break;
+            case 'facebook':
+                shareText = `I scored ${score} points in 2048! My best score is ${bestScore}. Play now: ${url}`;
+                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(shareText)}`;
+                break;
+            case 'copy':
+                shareText = `I scored ${score} points in 2048! My best score is ${bestScore}. Play now: ${url}`;
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('Score copied to clipboard!');
+                }).catch(() => {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = shareText;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    alert('Score copied to clipboard!');
+                });
+                return;
+        }
+        
+        if (shareUrl) {
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+        }
+    }
+    
+    showShareModal() {
+        // 创建分享弹窗
+        const overlay = document.createElement('div');
+        overlay.className = 'confirmation-overlay';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        `;
+        
+        const modal = document.createElement('div');
+        modal.className = 'confirmation-modal';
+        modal.style.cssText = `
+            background: var(--bg-color);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        `;
+        
+        modal.innerHTML = `
+            <h2 style="margin: 0 0 20px 0; color: var(--text-color); font-size: 24px;">Share Your Score!</h2>
+            <p style="margin: 0 0 30px 0; color: var(--text-color); font-size: 16px;">
+                You scored <strong>${this.score}</strong> points!<br>
+                Best score: <strong>${this.bestScore}</strong>
+            </p>
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button id="share-twitter" style="
+                    background: #1da1f2;
+                    color: white;
+                    border: none;
+                    padding: 12px 20px;
+                    border-radius: 6px;
+                    font-size: 14px;
+                    cursor: pointer;
+                ">🐦 Twitter</button>
+                <button id="share-facebook" style="
+                    background: #4267B2;
+                    color: white;
+                    border: none;
+                    padding: 12px 20px;
+                    border-radius: 6px;
+                    font-size: 14px;
+                    cursor: pointer;
+                ">📘 Facebook</button>
+                <button id="share-copy" style="
+                    background: var(--button-bg);
+                    color: var(--tile-text);
+                    border: none;
+                    padding: 12px 20px;
+                    border-radius: 6px;
+                    font-size: 14px;
+                    cursor: pointer;
+                ">📋 Copy Link</button>
+                <button id="close-share" style="
+                    background: #f67c5f;
+                    color: white;
+                    border: none;
+                    padding: 12px 20px;
+                    border-radius: 6px;
+                    font-size: 14px;
+                    cursor: pointer;
+                ">Close</button>
+            </div>
+        `;
+        
+        overlay.appendChild(modal);
+        document.body.appendChild(overlay);
+        
+        // 添加按钮事件
+        document.getElementById('share-twitter').addEventListener('click', () => {
+            this.shareScore('twitter');
+            document.body.removeChild(overlay);
+        });
+        
+        document.getElementById('share-facebook').addEventListener('click', () => {
+            this.shareScore('facebook');
+            document.body.removeChild(overlay);
+        });
+        
+        document.getElementById('share-copy').addEventListener('click', () => {
+            this.shareScore('copy');
+            document.body.removeChild(overlay);
+        });
+        
+        document.getElementById('close-share').addEventListener('click', () => {
+            document.body.removeChild(overlay);
+        });
+        
+        // 点击遮罩层关闭弹窗
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                document.body.removeChild(overlay);
+            }
+        });
     }
     
     createBoard() {
@@ -59,7 +299,7 @@ class Game2048 {
         }
     }
     
-    addTile(row, col, value) {
+    addTile(row, col, value, isNew = false) {
         const cell = document.getElementById(`cell-${row}-${col}`);
         const tile = document.createElement('div');
         tile.className = `tile tile-${value}`;
@@ -77,6 +317,14 @@ class Game2048 {
         }
         
         cell.appendChild(tile);
+        
+        // 添加出现动画
+        if (isNew) {
+            tile.classList.add('tile-appearing');
+            setTimeout(() => {
+                tile.classList.remove('tile-appearing');
+            }, 200);
+        }
     }
     
     addRandomTile() {
@@ -92,6 +340,7 @@ class Game2048 {
         if (emptyCells.length > 0) {
             const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
             this.board[randomCell.row][randomCell.col] = Math.random() < 0.9 ? 2 : 4;
+            this.addTile(randomCell.row, randomCell.col, this.board[randomCell.row][randomCell.col], true);
         }
     }
     
@@ -117,6 +366,7 @@ class Game2048 {
         }
         
         if (moved) {
+            this.soundManager.play('move'); // 播放移动音效
             this.addRandomTile();
             this.saveState(); // 保存移动后的状态
             this.updateDisplay();
@@ -459,12 +709,36 @@ class Game2048 {
     }
     
     showWinMessage() {
+        // 添加胜利动画
+        const gameBoard = document.getElementById('game-board');
+        gameBoard.classList.add('win-animation');
+        
+        // 播放胜利音效
+        this.soundManager.play('win');
+        
+        // 显示胜利消息
         alert('Congratulations! You reached 2048!');
+        
+        // 停止胜利动画
+        setTimeout(() => {
+            gameBoard.classList.remove('win-animation');
+        }, 3000);
     }
     
     showGameOver() {
         this.updateGameStats();
         document.getElementById('final-score').textContent = this.score;
+        
+        // 播放游戏结束音效
+        this.soundManager.play('gameOver');
+        
+        // 添加游戏结束动画
+        const gameBoard = document.getElementById('game-board');
+        gameBoard.classList.add('game-over-animation');
+        setTimeout(() => {
+            gameBoard.classList.remove('game-over-animation');
+        }, 500);
+        
         document.getElementById('game-over').style.display = 'flex';
     }
     
@@ -714,6 +988,43 @@ class Game2048 {
         if (swapBtn) {
             swapBtn.addEventListener('click', () => {
                 this.toggleSwapMode();
+            });
+        }
+        
+        // 添加音效按钮事件
+        const soundBtn = document.getElementById('sound-btn');
+        if (soundBtn) {
+            soundBtn.addEventListener('click', () => {
+                const enabled = this.soundManager.toggle();
+                soundBtn.textContent = enabled ? '🔊 Sound' : '🔇 Sound';
+                soundBtn.classList.toggle('muted', !enabled);
+            });
+            
+            // 初始化音效按钮状态
+            soundBtn.textContent = this.soundManager.enabled ? '🔊 Sound' : '🔇 Sound';
+            soundBtn.classList.toggle('muted', !this.soundManager.enabled);
+        }
+        
+        // 添加主题按钮事件
+        const themeBtn = document.getElementById('theme-btn');
+        if (themeBtn) {
+            themeBtn.addEventListener('click', () => {
+                this.toggleTheme();
+            });
+            
+            // 初始化主题按钮状态
+            themeBtn.setAttribute('data-theme', this.currentTheme);
+            const themeText = themeBtn.querySelector('.theme-text');
+            if (themeText) {
+                themeText.textContent = this.currentTheme === 'light' ? 'Light' : 'Dark';
+            }
+        }
+        
+        // 添加分享按钮事件
+        const shareBtn = document.getElementById('share-btn');
+        if (shareBtn) {
+            shareBtn.addEventListener('click', () => {
+                this.showShareModal();
             });
         }
     }
