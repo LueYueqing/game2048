@@ -1,7 +1,7 @@
 {
   "name": "2048游戏 - 免费在线数字拼图游戏",
   "short_name": "2048游戏",
-  "description": "免费在线玩2048游戏！经典数字拼图游戏，通过合并相同数字达到2048。",
+  "description": "免费在线玩2 048游戏！经典数字拼图游戏，通过合并相同数字达到2048。",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#667eea",
