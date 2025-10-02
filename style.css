@@ -368,6 +368,25 @@ body {
     transform: translateY(-1px);
 }
 
+/* 游戏操作按钮 - 小尺寸，紧凑布局 */
+.game-action-btn {
+    padding: 8px 16px;
+    font-size: 0.9em;
+    background: #8f7a66;
+    min-width: 120px;
+}
+
+.game-action-btn:hover {
+    background: #9f8a76;
+    transform: translateY(-1px);
+}
+
+.game-action-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
 /* 设置按钮 - 小尺寸、圆形 */
 .settings-btn {
     padding: 10px;
@@ -397,8 +416,8 @@ body {
 .game-controls {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    margin: 20px 0;
+    gap: 12px;
+    margin: 15px 0;
     flex-wrap: wrap;
 }
 
@@ -859,8 +878,14 @@ body {
     }
     
     .game-controls {
-        gap: 10px;
-        margin: 15px 0;
+        gap: 8px;
+        margin: 12px 0;
+    }
+    
+    .game-action-btn {
+        padding: 6px 12px;
+        font-size: 0.8em;
+        min-width: 100px;
     }
     
     .game-over-controls {
