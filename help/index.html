@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <title>2048 Game Help Center | Game2048.vip</title>
+    <meta name="description" content="Get help with 2048 game. Find answers to common questions, troubleshooting guides, and support resources for playing and winning 2048.">
+    <meta name="keywords" content="2048 help,2048 support,2048 troubleshooting,2048 game help,2048 assistance,2048 guide help">
+    <meta name="author" content="game2048.vip">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://game2048.vip/help/">
+    <meta property="og:title" content="2048 Game Help Center">
+    <meta property="og:description" content="Get help with 2048 game. Find answers to common questions, troubleshooting guides, and support resources.">
+    <meta property="og:image" content="https://game2048.vip/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://game2048.vip/help/">
+    <meta property="twitter:title" content="2048 Game Help Center">
+    <meta property="twitter:description" content="Get help with 2048 game. Find answers to common questions, troubleshooting guides, and support resources.">
+    <meta property="twitter:image" content="https://game2048.vip/og-image.jpg">
+    
+    <!-- 图标 -->
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://game2048.vip/help/">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <style>
+        .help-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #faf8ef;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid #d6d6d6;
+        }
+        
+        .help-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #bbada0;
+            color: #f9f6f2;
+            border-radius: 15px;
+        }
+        
+        .help-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .help-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .help-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .help-card {
+            background: #eee4da;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #d6d6d6;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .help-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .help-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #bbada0, #8f7a66);
+        }
+        
+        .help-card h3 {
+            color: #8f7a66;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .help-card p {
+            color: #776e65;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .help-card ul {
+            color: #776e65;
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .help-card li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .help-card a {
+            display: inline-block;
+            background: #8f7a66;
+            color: #f9f6f2;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .help-card a:hover {
+            background: #9f8a76;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        
+        .quick-help {
+            background: #ede0c8;
+            border: 1px solid #d6d6d6;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        .quick-help h3 {
+            color: #776e65;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.5em;
+        }
+        
+        .quick-help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .quick-help-item {
+            background: #faf8ef;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #d6d6d6;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+        
+        .quick-help-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .quick-help-item h4 {
+            color: #8f7a66;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .quick-help-item p {
+            color: #776e65;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        
+        .quick-help-item a {
+            color: #8f7a66;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .quick-help-item a:hover {
+            text-decoration: underline;
+        }
+        
+        .navigation-links {
+            text-align: center;
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .navigation-links a {
+            display: inline-block;
+            background: #8f7a66;
+            color: #f9f6f2;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .navigation-links a:hover {
+            background: #9f8a76;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        
+        .navigation-links a.primary {
+            background: #bbada0;
+        }
+        
+        .navigation-links a.primary:hover {
+            background: #c4b5a5;
+        }
+        
+        @media (max-width: 768px) {
+            .help-container {
+                padding: 10px;
+            }
+            
+            .help-header h1 {
+                font-size: 2em;
+            }
+            
+            .help-categories {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .help-card {
+                padding: 20px;
+            }
+            
+            .navigation-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body style="background: #faf8ef; color: #776e65; font-family: 'Arial', sans-serif; margin: 0; padding: 20px;">
+    <div class="help-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <ol>
+                <li><a href="../index.html">Home</a></li>
+                <li aria-current="page">Help</li>
+            </ol>
+        </nav>
+        
+        <div class="help-header">
+            <h1>📖 Help Center</h1>
+            <p>Get Help with 2048 Game - Support and Resources</p>
+        </div>
+        
+        <div class="navigation-links">
+            <a href="../index.html" class="primary">🎮 Play 2048 Now</a>
+            <a href="../learn/index.html">📚 Learning Center</a>
+            <a href="../how-to-win-2048.html">🏆 Winning Guide</a>
+        </div>
+        
+        <!-- 帮助分类 -->
+        <div class="help-categories">
+            <div class="help-card">
+                <h3>❓ Frequently Asked Questions</h3>
+                <p>Find answers to the most common questions about 2048 game, including rules, strategies, and technical issues.</p>
+                <ul>
+                    <li>How to play 2048 game</li>
+                    <li>How to win 2048 consistently</li>
+                    <li>Mobile and desktop controls</li>
+                    <li>Game rules and mechanics</li>
+                    <li>Technical troubleshooting</li>
+                </ul>
+                <a href="faq.html">View FAQ →</a>
+            </div>
+            
+            <div class="help-card">
+                <h3>🎮 Game Tutorials</h3>
+                <p>Step-by-step guides to learn 2048 from beginner to expert level with detailed instructions and examples.</p>
+                <ul>
+                    <li>Complete beginner's guide</li>
+                    <li>Winning strategy tutorials</li>
+                    <li>Advanced techniques guide</li>
+                    <li>Visual examples and patterns</li>
+                    <li>Practice recommendations</li>
+                </ul>
+                <a href="../learn/index.html">Start Learning →</a>
+            </div>
+            
+            <div class="help-card">
+                <h3>🎯 Strategy Guides</h3>
+                <p>Master proven strategies and techniques to consistently win 2048 and reach higher tiles like 4096 and 8192.</p>
+                <ul>
+                    <li>Corner strategy mastery</li>
+                    <li>Snake pattern construction</li>
+                    <li>Mental strategy techniques</li>
+                    <li>Advanced board management</li>
+                    <li>Expert-level pro tips</li>
+                </ul>
+                <a href="../how-to-win-2048.html">Learn Strategies →</a>
+            </div>
+        </div>
+        
+        <!-- 快速帮助 -->
+        <div class="quick-help">
+            <h3>🚀 Quick Help</h3>
+            <div class="quick-help-grid">
+                <div class="quick-help-item">
+                    <h4>🎮 How to Play</h4>
+                    <p>Learn the basic rules and controls</p>
+                    <a href="../learn/how-to-play-2048.html">Get Started →</a>
+                </div>
+                
+                <div class="quick-help-item">
+                    <h4>🏆 How to Win</h4>
+                    <p>Master winning strategies</p>
+                    <a href="../how-to-win-2048.html">Learn to Win →</a>
+                </div>
+                
+                <div class="quick-help-item">
+                    <h4>📱 Mobile Help</h4>
+                    <p>Touch controls and mobile tips</p>
+                    <a href="faq.html#mobile">Mobile Guide →</a>
+                </div>
+                
+                <div class="quick-help-item">
+                    <h4>🎯 Advanced Tips</h4>
+                    <p>Expert techniques and strategies</p>
+                    <a href="../learn/2048-strategy-guide.html">Master Guide →</a>
+                </div>
+                
+                <div class="quick-help-item">
+                    <h4>❓ Common Issues</h4>
+                    <p>Troubleshooting and solutions</p>
+                    <a href="faq.html#troubleshooting">Get Help →</a>
+                </div>
+                
+                <div class="quick-help-item">
+                    <h4>📊 Game Statistics</h4>
+                    <p>Understanding scores and progress</p>
+                    <a href="faq.html#statistics">View Stats →</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 支持资源 -->
+        <div class="help-categories">
+            <div class="help-card">
+                <h3>📚 Learning Resources</h3>
+                <p>Comprehensive educational content to help you master 2048 at every skill level.</p>
+                <ul>
+                    <li>Complete learning center</li>
+                    <li>Video tutorials and guides</li>
+                    <li>Interactive examples</li>
+                    <li>Practice exercises</li>
+                    <li>Progress tracking</li>
+                </ul>
+                <a href="../learn/index.html">Explore Resources →</a>
+            </div>
+            
+            <div class="help-card">
+                <h3>🎯 Strategy Resources</h3>
+                <p>Advanced strategy guides and expert tips for competitive 2048 play.</p>
+                <ul>
+                    <li>Advanced strategy guides</li>
+                    <li>Mental training techniques</li>
+                    <li>Board pattern recognition</li>
+                    <li>Speed and efficiency tips</li>
+                    <li>Master-level techniques</li>
+                </ul>
+                <a href="../learn/2048-strategy-guide.html">Advanced Guide →</a>
+            </div>
+            
+            <div class="help-card">
+                <h3>🛠️ Technical Support</h3>
+                <p>Technical help for browser compatibility, mobile devices, and game performance issues.</p>
+                <ul>
+                    <li>Browser compatibility</li>
+                    <li>Mobile device support</li>
+                    <li>Performance optimization</li>
+                    <li>Data saving and sync</li>
+                    <li>Accessibility features</li>
+                </ul>
+                <a href="faq.html#technical">Technical Help →</a>
+            </div>
+        </div>
+        
+        <!-- 联系信息 -->
+        <div class="quick-help">
+            <h3>📞 Need More Help?</h3>
+            <p style="text-align: center; color: #776e65; margin-bottom: 20px;">
+                Can't find what you're looking for? We're here to help you succeed at 2048!
+            </p>
+            <div class="quick-help-grid">
+                <div class="quick-help-item">
+                    <h4>📧 Contact Support</h4>
+                    <p>Get personalized help</p>
+                    <a href="mailto:support@game2048.vip">Email Us →</a>
+                </div>
+                
+                <div class="quick-help-item">
+                    <h4>💬 Community Help</h4>
+                    <p>Connect with other players</p>
+                    <a href="../index.html">Join Community →</a>
+                </div>
+                
+                <div class="quick-help-item">
+                    <h4>📝 Feedback</h4>
+                    <p>Share your suggestions</p>
+                    <a href="mailto:feedback@game2048.vip">Send Feedback →</a>
+                </div>
+                
+                <div class="quick-help-item">
+                    <h4>🔄 Updates</h4>
+                    <p>Stay updated on new features</p>
+                    <a href="../index.html">Check Updates →</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 导航链接 -->
+        <div class="navigation-links">
+            <a href="../index.html" class="primary">🎮 Ready to Play?</a>
+            <a href="../learn/index.html">📚 Start Learning</a>
+            <a href="../how-to-win-2048.html">🏆 Master Strategies</a>
+        </div>
+    </div>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DZE9B06E18"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-DZE9B06E18');
+    </script>
+</body>
+</html>

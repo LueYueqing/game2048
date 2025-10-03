@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <title>Learn 2048 - Complete Learning Center | Game2048.vip</title>
+    <meta name="description" content="Complete learning center for 2048 game. Learn how to play, win, and master 2048 with our comprehensive guides, tutorials, and expert strategies.">
+    <meta name="keywords" content="learn 2048,2048 tutorial,2048 guide,how to play 2048,how to win 2048,2048 learning center,2048 education">
+    <meta name="author" content="game2048.vip">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://game2048.vip/learn/">
+    <meta property="og:title" content="Learn 2048 - Complete Learning Center">
+    <meta property="og:description" content="Complete learning center for 2048 game. Learn how to play, win, and master 2048 with our comprehensive guides and tutorials.">
+    <meta property="og:image" content="https://game2048.vip/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://game2048.vip/learn/">
+    <meta property="twitter:title" content="Learn 2048 - Complete Learning Center">
+    <meta property="twitter:description" content="Complete learning center for 2048 game. Learn how to play, win, and master 2048 with our comprehensive guides and tutorials.">
+    <meta property="twitter:image" content="https://game2048.vip/og-image.jpg">
+    
+    <!-- 图标 -->
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://game2048.vip/learn/">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <style>
+        .learning-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #faf8ef;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid #d6d6d6;
+        }
+        
+        .learning-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #bbada0;
+            color: #f9f6f2;
+            border-radius: 15px;
+        }
+        
+        .learning-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .learning-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .learning-path {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .path-card {
+            background: #eee4da;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #d6d6d6;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .path-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .path-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #bbada0, #8f7a66);
+        }
+        
+        .path-card h3 {
+            color: #8f7a66;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .path-card p {
+            color: #776e65;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .path-card ul {
+            color: #776e65;
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .path-card li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .path-card a {
+            display: inline-block;
+            background: #8f7a66;
+            color: #f9f6f2;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .path-card a:hover {
+            background: #9f8a76;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        
+        .difficulty-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #bbada0;
+            color: #f9f6f2;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .difficulty-badge.beginner {
+            background: #8f7a66;
+        }
+        
+        .difficulty-badge.intermediate {
+            background: #bbada0;
+        }
+        
+        .difficulty-badge.advanced {
+            background: #776e65;
+        }
+        
+        .quick-links {
+            background: #ede0c8;
+            border: 1px solid #d6d6d6;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        .quick-links h3 {
+            color: #776e65;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.5em;
+        }
+        
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .quick-link {
+            background: #faf8ef;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #d6d6d6;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+        
+        .quick-link:hover {
+            transform: translateY(-3px);
+        }
+        
+        .quick-link h4 {
+            color: #8f7a66;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .quick-link p {
+            color: #776e65;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        
+        .quick-link a {
+            color: #8f7a66;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .quick-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .navigation-links {
+            text-align: center;
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .navigation-links a {
+            display: inline-block;
+            background: #8f7a66;
+            color: #f9f6f2;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .navigation-links a:hover {
+            background: #9f8a76;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        
+        .navigation-links a.primary {
+            background: #bbada0;
+        }
+        
+        .navigation-links a.primary:hover {
+            background: #c4b5a5;
+        }
+        
+        @media (max-width: 768px) {
+            .learning-container {
+                padding: 10px;
+            }
+            
+            .learning-header h1 {
+                font-size: 2em;
+            }
+            
+            .learning-path {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .path-card {
+                padding: 20px;
+            }
+            
+            .navigation-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body style="background: #faf8ef; color: #776e65; font-family: 'Arial', sans-serif; margin: 0; padding: 20px;">
+    <div class="learning-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <ol>
+                <li><a href="../index.html">Home</a></li>
+                <li aria-current="page">Learn</li>
+            </ol>
+        </nav>
+        
+        <div class="learning-header">
+            <h1>📚 Learn 2048</h1>
+            <p>Complete Learning Center - From Beginner to Expert</p>
+        </div>
+        
+        <div class="navigation-links">
+            <a href="../index.html" class="primary">🎮 Play 2048 Now</a>
+            <a href="../how-to-win-2048.html">🏆 How to Win 2048</a>
+            <a href="../help/faq.html">❓ Help Center</a>
+        </div>
+        
+        <!-- 学习路径 -->
+        <div class="learning-path">
+            <div class="path-card">
+                <div class="difficulty-badge beginner">BEGINNER</div>
+                <h3>🎮 How to Play 2048</h3>
+                <p>New to 2048? Start here to learn the basics of the game, understand the rules, and master the fundamental controls.</p>
+                <ul>
+                    <li>Game rules and objectives</li>
+                    <li>Basic controls and movement</li>
+                    <li>Understanding tile merging</li>
+                    <li>Common beginner mistakes to avoid</li>
+                    <li>Getting your first 64 and 128 tiles</li>
+                </ul>
+                <a href="how-to-play-2048.html">Start Learning →</a>
+            </div>
+            
+            <div class="path-card">
+                <div class="difficulty-badge intermediate">INTERMEDIATE</div>
+                <h3>🏆 How to Win 2048</h3>
+                <p>Ready to reach 2048 consistently? Learn proven strategies and techniques to win the game every time.</p>
+                <ul>
+                    <li>Corner strategy mastery</li>
+                    <li>Snake pattern construction</li>
+                    <li>Advanced merge planning</li>
+                    <li>Board control techniques</li>
+                    <li>Consistent winning strategies</li>
+                </ul>
+                <a href="../how-to-win-2048.html">Learn to Win →</a>
+            </div>
+            
+            <div class="path-card">
+                <div class="difficulty-badge advanced">ADVANCED</div>
+                <h3>🎯 Advanced Strategy Guide</h3>
+                <p>Master-level techniques for reaching 4096, 8192, and beyond. Expert strategies for competitive 2048 play.</p>
+                <ul>
+                    <li>Perfect snake pattern mastery</li>
+                    <li>Mental strategy and discipline</li>
+                    <li>Speed and efficiency techniques</li>
+                    <li>Beyond 2048: 4096+ strategies</li>
+                    <li>Expert-level pro tips</li>
+                </ul>
+                <a href="2048-strategy-guide.html">Master Techniques →</a>
+            </div>
+        </div>
+        
+        <!-- 快速链接 -->
+        <div class="quick-links">
+            <h3>🚀 Quick Access</h3>
+            <div class="quick-links-grid">
+                <div class="quick-link">
+                    <h4>📋 Game Rules</h4>
+                    <p>Basic rules and mechanics</p>
+                    <a href="how-to-play-2048.html#rules">View Rules →</a>
+                </div>
+                
+                <div class="quick-link">
+                    <h4>🎮 Controls Guide</h4>
+                    <p>Keyboard and touch controls</p>
+                    <a href="how-to-play-2048.html#controls">Learn Controls →</a>
+                </div>
+                
+                <div class="quick-link">
+                    <h4>🎯 Basic Strategies</h4>
+                    <p>Essential winning techniques</p>
+                    <a href="../how-to-win-2048.html#fundamentals">View Strategies →</a>
+                </div>
+                
+                <div class="quick-link">
+                    <h4>📊 Visual Examples</h4>
+                    <p>Board layouts and patterns</p>
+                    <a href="../how-to-win-2048.html#examples">See Examples →</a>
+                </div>
+                
+                <div class="quick-link">
+                    <h4>❓ Common Questions</h4>
+                    <p>Frequently asked questions</p>
+                    <a href="../help/faq.html">View FAQ →</a>
+                </div>
+                
+                <div class="quick-link">
+                    <h4>🏆 Achievements</h4>
+                    <p>Goals and milestones</p>
+                    <a href="2048-strategy-guide.html#achievements">Set Goals →</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 学习建议 -->
+        <div class="quick-links">
+            <h3>💡 Learning Recommendations</h3>
+            <div class="learning-path">
+                <div class="path-card">
+                    <h3>📅 Study Schedule</h3>
+                    <ul>
+                        <li><strong>Week 1:</strong> Master basic rules and controls</li>
+                        <li><strong>Week 2:</strong> Practice corner strategy</li>
+                        <li><strong>Week 3:</strong> Learn snake patterns</li>
+                        <li><strong>Week 4:</strong> Aim for consistent 2048</li>
+                    </ul>
+                </div>
+                
+                <div class="path-card">
+                    <h3>🎯 Practice Goals</h3>
+                    <ul>
+                        <li><strong>Daily:</strong> Play 5-10 games minimum</li>
+                        <li><strong>Weekly:</strong> Focus on one specific technique</li>
+                        <li><strong>Monthly:</strong> Review and improve strategies</li>
+                        <li><strong>Long-term:</strong> Reach higher tile milestones</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 下一步行动 -->
+        <div class="navigation-links">
+            <a href="how-to-play-2048.html" class="primary">🎮 Start with Basics</a>
+            <a href="../index.html">🎯 Practice Now</a>
+            <a href="../help/faq.html">❓ Get Help</a>
+        </div>
+    </div>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DZE9B06E18"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-DZE9B06E18');
+    </script>
+</body>
+</html>

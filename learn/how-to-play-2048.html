@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <title>How to Play 2048 Game - Complete Beginner's Guide | Game2048.vip</title>
+    <meta name="description" content="Learn how to play 2048 game step by step. Complete beginner's guide with rules, controls, and basic strategies. Start playing 2048 online for free!">
+    <meta name="keywords" content="how to play 2048,2048 game rules,how do you play 2048,2048 game how to play,how to play 2048 game,how do you play 2048 game,2048 tutorial,2048 beginner guide">
+    <meta name="author" content="game2048.vip">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://game2048.vip/learn/how-to-play-2048">
+    <meta property="og:title" content="How to Play 2048 Game - Complete Beginner's Guide">
+    <meta property="og:description" content="Learn how to play 2048 game step by step. Complete beginner's guide with rules, controls, and basic strategies.">
+    <meta property="og:image" content="https://game2048.vip/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://game2048.vip/learn/how-to-play-2048">
+    <meta property="twitter:title" content="How to Play 2048 Game - Complete Beginner's Guide">
+    <meta property="twitter:description" content="Learn how to play 2048 game step by step. Complete beginner's guide with rules, controls, and basic strategies.">
+    <meta property="twitter:image" content="https://game2048.vip/og-image.jpg">
+    
+    <!-- 图标 -->
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://game2048.vip/learn/how-to-play-2048">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <style>
+        .guide-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #faf8ef;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid #d6d6d6;
+        }
+        
+        .guide-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #bbada0;
+            color: #f9f6f2;
+            border-radius: 15px;
+        }
+        
+        .guide-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .guide-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .guide-section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #faf8ef;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #d6d6d6;
+            border-left: 5px solid #bbada0;
+        }
+        
+        .guide-section h2 {
+            color: #776e65;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #bbada0;
+            padding-bottom: 10px;
+        }
+        
+        .guide-section h3 {
+            color: #776e65;
+            margin: 25px 0 15px 0;
+            font-size: 1.3em;
+            border-bottom: 2px solid #bbada0;
+            padding-bottom: 5px;
+        }
+        
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .guide-card {
+            background: #eee4da;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #d6d6d6;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .guide-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .guide-card h4 {
+            color: #8f7a66;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        
+        .guide-card p, .guide-card li {
+            color: #776e65;
+        }
+        
+        .step-guide {
+            background: #ede0c8;
+            border: 1px solid #d6d6d6;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .step-guide ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .step-guide li {
+            margin: 10px 0;
+            line-height: 1.6;
+            color: #776e65;
+        }
+        
+        .warning-box {
+            background: #f2b179;
+            border: 1px solid #d6d6d6;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .warning-box h3, .warning-box li {
+            color: #776e65;
+        }
+        
+        .success-box {
+            background: #ede0c8;
+            border: 1px solid #d6d6d6;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .success-box h3, .success-box p, .success-box li {
+            color: #776e65;
+        }
+        
+        .tip-box {
+            background: #eee4da;
+            border: 1px solid #d6d6d6;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .tip-box h3, .tip-box li {
+            color: #776e65;
+        }
+        
+        .game-board-example {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+            width: 200px;
+            height: 200px;
+            background: #bbada0;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 15px auto;
+        }
+        
+        .tile-example {
+            background: #eee4da;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #776e65;
+        }
+        
+        .tile-example.merged {
+            background: #edc22e;
+            color: #f9f6f2;
+        }
+        
+        .navigation-links {
+            text-align: center;
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .navigation-links a {
+            display: inline-block;
+            background: #8f7a66;
+            color: #f9f6f2;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .navigation-links a:hover {
+            background: #9f8a76;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        
+        .navigation-links a.primary {
+            background: #bbada0;
+        }
+        
+        .navigation-links a.primary:hover {
+            background: #c4b5a5;
+        }
+        
+        @media (max-width: 768px) {
+            .guide-container {
+                padding: 10px;
+            }
+            
+            .guide-header h1 {
+                font-size: 2em;
+            }
+            
+            .guide-section {
+                padding: 20px;
+            }
+            
+            .guide-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body style="background: #faf8ef; color: #776e65; font-family: 'Arial', sans-serif; margin: 0; padding: 20px;">
+    <div class="guide-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <ol>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="index.html">Learn</a></li>
+                <li aria-current="page">How to Play 2048</li>
+            </ol>
+        </nav>
+        
+        <div class="guide-header">
+            <h1>🎮 How to Play 2048 Game</h1>
+            <p>Complete Beginner's Guide - Learn the Rules and Start Playing</p>
+        </div>
+        
+        <div class="navigation-links">
+            <a href="../index.html" class="primary">🎮 Play 2048 Now</a>
+            <a href="../how-to-win-2048.html">📚 How to Win 2048</a>
+            <a href="2048-strategy-guide.html">🎯 Strategy Guide</a>
+        </div>
+        
+        <!-- 快速开始 -->
+        <div class="guide-section">
+            <h2>🚀 Quick Start Guide (30 Seconds)</h2>
+            
+            <div class="success-box">
+                <h3>🏆 Goal of 2048 Game</h3>
+                <p><strong>Your objective is simple:</strong> Combine numbered tiles to create a tile with the number 2048!</p>
+            </div>
+            
+            <div class="step-guide">
+                <h3>⚡ How to Play 2048 - Quick Steps:</h3>
+                <ol>
+                    <li><strong>Use arrow keys</strong> (↑ ↓ ← →) or WASD to move tiles</li>
+                    <li><strong>When two same numbers touch</strong>, they merge into one</li>
+                    <li><strong>New tiles appear</strong> after each move (2 or 4)</li>
+                    <li><strong>Keep merging</strong> until you reach 2048!</li>
+                    <li><strong>Game ends</strong> when the board is full and no moves are possible</li>
+                </ol>
+            </div>
+        </div>
+        
+        <!-- 详细规则 -->
+        <div class="guide-section">
+            <h2>📋 Detailed Game Rules</h2>
+            
+            <div class="guide-grid">
+                <div class="guide-card">
+                    <h4>🎯 Game Objective</h4>
+                    <p>The goal of 2048 is to slide numbered tiles on a grid to combine them and create a tile with the number 2048. But you can continue playing to reach even higher numbers like 4096, 8192, and beyond!</p>
+                </div>
+                
+                <div class="guide-card">
+                    <h4>🔢 Tile Values</h4>
+                    <p>All tiles start as either 2 or 4. When two tiles with the same number touch, they merge into one tile with double the value. For example: 2+2=4, 4+4=8, 8+8=16, and so on.</p>
+                </div>
+                
+                <div class="guide-card">
+                    <h4>📱 Controls</h4>
+                    <p>On computer: Use arrow keys (↑ ↓ ← →) or WASD keys. On mobile: Swipe in the direction you want to move. All tiles slide in the chosen direction until they hit the edge or another tile.</p>
+                </div>
+            </div>
+            
+            <h3>🔄 How Merging Works</h3>
+            <div class="game-board-example">
+                <div class="tile-example">2</div>
+                <div class="tile-example">4</div>
+                <div class="tile-example">8</div>
+                <div class="tile-example">16</div>
+                <div class="tile-example">2</div>
+                <div class="tile-example">2</div>
+                <div class="tile-example">4</div>
+                <div class="tile-example">8</div>
+                <div class="tile-example">4</div>
+                <div class="tile-example">4</div>
+                <div class="tile-example">8</div>
+                <div class="tile-example">16</div>
+                <div class="tile-example">8</div>
+                <div class="tile-example">8</div>
+                <div class="tile-example">16</div>
+                <div class="tile-example">32</div>
+            </div>
+            <p style="text-align: center; color: #776e65;"><strong>Example:</strong> Move right and the two "2" tiles will merge into "4", and the two "4" tiles will merge into "8"</p>
+        </div>
+        
+        <!-- 操作指南 -->
+        <div class="guide-section">
+            <h2>🎮 Control Guide</h2>
+            
+            <div class="guide-grid">
+                <div class="guide-card">
+                    <h4>💻 Computer Controls</h4>
+                    <ul>
+                        <li><strong>Arrow Keys:</strong> ↑ ↓ ← → for up, down, left, right</li>
+                        <li><strong>WASD Keys:</strong> W=Up, A=Left, S=Down, D=Right</li>
+                        <li><strong>Undo:</strong> Press 'U' to undo your last move</li>
+                        <li><strong>New Game:</strong> Press 'N' for a new game</li>
+                    </ul>
+                </div>
+                
+                <div class="guide-card">
+                    <h4>📱 Mobile Controls</h4>
+                    <ul>
+                        <li><strong>Swipe Up:</strong> Move all tiles up</li>
+                        <li><strong>Swipe Down:</strong> Move all tiles down</li>
+                        <li><strong>Swipe Left:</strong> Move all tiles left</li>
+                        <li><strong>Swipe Right:</strong> Move all tiles right</li>
+                        <li><strong>Tap Buttons:</strong> Use on-screen buttons if available</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="tip-box">
+                <h3>💡 Pro Tip for Beginners</h3>
+                <p>Start by focusing on one direction (preferably down or right). This helps you get familiar with how tiles move and merge before trying more complex strategies.</p>
+            </div>
+        </div>
+        
+        <!-- 基本策略 -->
+        <div class="guide-section">
+            <h2>🎯 Basic Strategies for Beginners</h2>
+            
+            <div class="guide-grid">
+                <div class="guide-card">
+                    <h4>📍 Corner Strategy</h4>
+                    <p>Keep your highest tile in one corner (preferably bottom-right). This prevents it from getting in the way and gives you more space to work with smaller tiles.</p>
+                </div>
+                
+                <div class="guide-card">
+                    <h4>📐 Edge Priority</h4>
+                    <p>Always try to keep larger numbers on the edges of the board. This makes it easier to merge them and prevents chaos in the middle of the board.</p>
+                </div>
+                
+                <div class="guide-card">
+                    <h4>🔄 Consistent Direction</h4>
+                    <p>Choose one main direction (down or right) and stick to it for most of your moves. This helps maintain order and makes planning easier.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 常见错误 -->
+        <div class="guide-section">
+            <h2>⚠️ Common Beginner Mistakes</h2>
+            
+            <div class="warning-box">
+                <h3>🚫 Mistakes to Avoid</h3>
+                <ul>
+                    <li><strong>Random Movements:</strong> Don't move tiles randomly without thinking</li>
+                    <li><strong>Ignoring the Corner:</strong> Always keep your highest tile in a corner</li>
+                    <li><strong>Mixing Large and Small:</strong> Don't mix large numbers in the middle of small ones</li>
+                    <li><strong>Rushing Moves:</strong> Take time to think - there's no time limit</li>
+                    <li><strong>Not Planning Ahead:</strong> Always think 1-2 moves ahead</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 游戏界面说明 -->
+        <div class="guide-section">
+            <h2>🖥️ Understanding the Game Interface</h2>
+            
+            <div class="guide-grid">
+                <div class="guide-card">
+                    <h4>📊 Score Display</h4>
+                    <p>Your current score is shown at the top. You earn points each time tiles merge. The "Best" score shows your highest score ever achieved.</p>
+                </div>
+                
+                <div class="guide-card">
+                    <h4>🎮 Control Buttons</h4>
+                    <p>New Game starts a fresh game. Undo lets you reverse your last move. Sound and theme buttons let you customize your experience.</p>
+                </div>
+                
+                <div class="guide-card">
+                    <h4>📱 Mobile Features</h4>
+                    <p>The game automatically adapts to your screen size. Touch controls are optimized for mobile devices, making it easy to play on phones and tablets.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 下一步 -->
+        <div class="guide-section">
+            <h2>🚀 Ready for the Next Level?</h2>
+            
+            <div class="success-box">
+                <h3>🎯 What's Next?</h3>
+                <p>Now that you know how to play 2048, you're ready to learn advanced strategies to consistently reach 2048 and beyond!</p>
+            </div>
+            
+            <div class="navigation-links">
+                <a href="../index.html" class="primary">🎮 Practice What You Learned</a>
+                <a href="../how-to-win-2048.html">📚 Learn How to Win</a>
+                <a href="2048-strategy-guide.html">🎯 Advanced Strategies</a>
+                <a href="../help/faq.html">❓ Common Questions</a>
+            </div>
+        </div>
+        
+        <!-- FAQ -->
+        <div class="guide-section">
+            <h2>❓ Frequently Asked Questions</h2>
+            
+            <h3>Q: How do you play 2048 game for beginners?</h3>
+            <p>A: Start by using arrow keys to move tiles. When two tiles with the same number touch, they merge into one. Your goal is to create a 2048 tile by combining smaller numbers.</p>
+            
+            <h3>Q: What are the basic rules of 2048?</h3>
+            <p>A: The rules are simple: move tiles with arrow keys, merge same numbers to create bigger numbers, and try to reach 2048. New tiles (2 or 4) appear after each move.</p>
+            
+            <h3>Q: How do you play 2048 on mobile?</h3>
+            <p>A: On mobile devices, swipe in the direction you want to move tiles. Swipe up, down, left, or right to move all tiles in that direction.</p>
+            
+            <h3>Q: Is 2048 game hard to learn?</h3>
+            <p>A: Not at all! 2048 is easy to learn but challenging to master. The basic rules can be understood in minutes, but developing winning strategies takes practice.</p>
+            
+            <h3>Q: Can I play 2048 without downloading?</h3>
+            <p>A: Yes! Our 2048 game is completely free and can be played directly in your web browser on both computer and mobile devices.</p>
+        </div>
+    </div>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DZE9B06E18"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-DZE9B06E18');
+    </script>
+</body>
+</html>
