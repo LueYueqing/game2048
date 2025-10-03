@@ -906,18 +906,26 @@ class Game2048 {
             
             switch (e.key) {
                 case 'ArrowLeft':
+                case 'a':
+                case 'A':
                     e.preventDefault();
                     this.move('left');
                     break;
                 case 'ArrowRight':
+                case 'd':
+                case 'D':
                     e.preventDefault();
                     this.move('right');
                     break;
                 case 'ArrowUp':
+                case 'w':
+                case 'W':
                     e.preventDefault();
                     this.move('up');
                     break;
                 case 'ArrowDown':
+                case 's':
+                case 'S':
                     e.preventDefault();
                     this.move('down');
                     break;
@@ -925,6 +933,11 @@ class Game2048 {
                 case 'U':
                     e.preventDefault();
                     this.undo();
+                    break;
+                case 'n':
+                case 'N':
+                    e.preventDefault();
+                    this.newGame();
                     break;
             }
         });
