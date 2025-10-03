@@ -138,6 +138,150 @@
             margin: 30px 0;
         }
         
+        /* 数学原理样式 */
+        .math-intro {
+            background: #f0f8ff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #4299e1;
+            margin-bottom: 25px;
+            color: #2d3748;
+        }
+        
+        .math-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .math-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #e6f3ff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .math-card h3 {
+            color: #2c5282;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .number-sequence {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 8px;
+            margin: 15px 0;
+        }
+        
+        .sequence-item {
+            background: #4299e1;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .sequence-item.highlight {
+            background: #edc22e;
+            color: #776e65;
+            transform: scale(1.1);
+        }
+        
+        .math-insight {
+            background: #f0fff4;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #38a169;
+            margin-top: 15px;
+            color: #22543d;
+        }
+        
+        .limit-explanation, .probability-insight, .complexity-explanation, .ev-example, .corner-math {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .limit-explanation h4, .probability-insight h4, .complexity-explanation h4, .ev-example h4, .corner-math h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        
+        .probability-table {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .prob-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #edf2f7;
+            padding: 10px 15px;
+            border-radius: 6px;
+        }
+        
+        .prob-tile {
+            background: #8f7a66;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .prob-value {
+            color: #2d3748;
+            font-weight: bold;
+        }
+        
+        .math-conclusion {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #bee3f8;
+            margin-top: 30px;
+        }
+        
+        .math-conclusion h3 {
+            color: #2c5282;
+            margin-bottom: 15px;
+        }
+        
+        .key-takeaways {
+            background: #f0fff4;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #38a169;
+            margin-top: 20px;
+        }
+        
+        .key-takeaways h4 {
+            color: #22543d;
+            margin-bottom: 15px;
+        }
+        
+        .key-takeaways ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .key-takeaways li {
+            padding: 8px 0;
+            border-bottom: 1px solid #c6f6d5;
+        }
+        
+        .key-takeaways li:last-child {
+            border-bottom: none;
+        }
+        
         .expert-box h3 {
             color: #f9f6f2;
             border-bottom: 2px solid rgba(249, 246, 242, 0.3);
@@ -380,6 +524,157 @@
                 <div class="tile-example">8</div>
             </div>
             <p style="text-align: center; color: #776e65;"><strong>Master Level:</strong> Perfect snake pattern ready for 4096 merge</p>
+        </div>
+        
+        <!-- 数学原理 -->
+        <div class="strategy-section">
+            <h2>🧮 Mathematical Principles Behind 2048</h2>
+            
+            <div class="math-intro">
+                <p>Understanding the mathematical foundations of 2048 will significantly improve your strategic thinking and help you make better decisions during gameplay.</p>
+            </div>
+            
+            <div class="math-grid">
+                <div class="math-card">
+                    <h3>🔢 Binary Number System</h3>
+                    <p><strong>Why powers of 2?</strong> Every number in 2048 follows the binary system (2^n), making it mathematically elegant and computationally efficient.</p>
+                    
+                    <div class="number-sequence">
+                        <div class="sequence-item">2¹ = 2</div>
+                        <div class="sequence-item">2² = 4</div>
+                        <div class="sequence-item">2³ = 8</div>
+                        <div class="sequence-item">2⁴ = 16</div>
+                        <div class="sequence-item">2⁵ = 32</div>
+                        <div class="sequence-item">2⁶ = 64</div>
+                        <div class="sequence-item">2⁷ = 128</div>
+                        <div class="sequence-item">2⁸ = 256</div>
+                        <div class="sequence-item">2⁹ = 512</div>
+                        <div class="sequence-item">2¹⁰ = 1024</div>
+                        <div class="sequence-item highlight">2¹¹ = 2048</div>
+                    </div>
+                    
+                    <div class="math-insight">
+                        <strong>Strategic Insight:</strong> This progression means each merge doubles the value, creating exponential growth that requires careful planning.
+                    </div>
+                </div>
+                
+                <div class="math-card">
+                    <h3>📐 Theoretical Limits</h3>
+                    <p><strong>Maximum Possible Tile:</strong> On a 4×4 grid, the theoretical maximum is 2¹⁷ = 131,072.</p>
+                    
+                    <div class="limit-explanation">
+                        <h4>Why 131,072?</h4>
+                        <ul>
+                            <li>Grid has 16 positions</li>
+                            <li>Maximum tiles needed: 16</li>
+                            <li>Highest possible: 2¹⁶ = 65,536</li>
+                            <li>But with perfect play: 2¹⁷ = 131,072</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="math-insight">
+                        <strong>Reality Check:</strong> Humans rarely reach beyond 4096, and 8192 is considered exceptional. AI can consistently reach 16384+.
+                    </div>
+                </div>
+                
+                <div class="math-card">
+                    <h3>🎲 Probability Analysis</h3>
+                    <p><strong>Tile Generation:</strong> Understanding the odds helps you plan better.</p>
+                    
+                    <div class="probability-table">
+                        <div class="prob-row">
+                            <span class="prob-tile">2</span>
+                            <span class="prob-value">90% chance</span>
+                        </div>
+                        <div class="prob-row">
+                            <span class="prob-tile">4</span>
+                            <span class="prob-value">10% chance</span>
+                        </div>
+                    </div>
+                    
+                    <div class="probability-insight">
+                        <h4>Strategic Implications:</h4>
+                        <ul>
+                            <li>Plan for mostly "2" tiles</li>
+                            <li>Use "4" tiles strategically when they appear</li>
+                            <li>Factor in probability when making risky moves</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="math-card">
+                    <h3>⚖️ Game State Complexity</h3>
+                    <p><strong>Possible Positions:</strong> The number of different board configurations is astronomical.</p>
+                    
+                    <div class="complexity-explanation">
+                        <h4>Why 2048 is Complex:</h4>
+                        <ul>
+                            <li><strong>State Space:</strong> ~10¹⁸ possible positions</li>
+                            <li><strong>Decision Tree:</strong> 4 possible moves per turn</li>
+                            <li><strong>Uncertainty:</strong> Random tile placement</li>
+                            <li><strong>Perfect Play:</strong> Requires lookahead of 10+ moves</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="math-insight">
+                        <strong>Practical Impact:</strong> This complexity is why intuition and pattern recognition are crucial for human players.
+                    </div>
+                </div>
+                
+                <div class="math-card">
+                    <h3>📊 Expected Value Analysis</h3>
+                    <p><strong>Move Evaluation:</strong> Learn to calculate the expected value of different moves.</p>
+                    
+                    <div class="ev-example">
+                        <h4>Example Calculation:</h4>
+                        <p>When you have two "512" tiles:</p>
+                        <ul>
+                            <li>Merging creates 1024 (immediate gain: 512 points)</li>
+                            <li>New tile appears (expected value: 2.2)</li>
+                            <li>Strategic value: Opens space for larger tiles</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="math-insight">
+                        <strong>Decision Framework:</strong> Consider immediate points, space creation, and future opportunities when evaluating moves.
+                    </div>
+                </div>
+                
+                <div class="math-card">
+                    <h3>🎯 Optimal Strategy Mathematics</h3>
+                    <p><strong>Corner Strategy:</strong> Why keeping your largest tile in a corner is mathematically optimal.</p>
+                    
+                    <div class="corner-math">
+                        <h4>Mathematical Proof:</h4>
+                        <ul>
+                            <li><strong>Space Efficiency:</strong> Corner position maximizes available moves</li>
+                            <li><strong>Merge Opportunities:</strong> 3 directions for potential merges</li>
+                            <li><strong>Protection:</strong> Reduces risk of blocking large tiles</li>
+                            <li><strong>Flexibility:</strong> Allows for multiple strategic paths</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="math-insight">
+                        <strong>Implementation:</strong> Always aim to build your snake pattern toward your chosen corner.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="math-conclusion">
+                <h3>🎓 Applying Mathematics to Strategy</h3>
+                <p>These mathematical principles form the foundation of all advanced 2048 strategies. By understanding the binary progression, probability distributions, and game complexity, you can make more informed decisions and develop better strategic intuition.</p>
+                
+                <div class="key-takeaways">
+                    <h4>Key Takeaways:</h4>
+                    <ul>
+                        <li><strong>Plan for exponential growth</strong> - each merge doubles the value</li>
+                        <li><strong>Factor in probability</strong> - expect mostly "2" tiles</li>
+                        <li><strong>Use corner strategy</strong> - mathematically optimal</li>
+                        <li><strong>Consider expected value</strong> - evaluate moves holistically</li>
+                        <li><strong>Embrace complexity</strong> - develop pattern recognition skills</li>
+                    </ul>
+                </div>
+            </div>
         </div>
         
         <!-- 心理策略 -->
