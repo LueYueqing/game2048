@@ -116,6 +116,8 @@ h1 {
     font-weight: bold;
     cursor: pointer;
     transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent; /* 移除移动端点击高亮 */
+    touch-action: manipulation; /* 优化触摸响应 */
 }
 
 .new-game-btn:hover, .restart-btn:hover, .undo-btn:hover, .swap-btn:hover, .sound-btn:hover {
@@ -518,6 +520,10 @@ body {
         height: 500px;
         max-height: 80vw;
         aspect-ratio: 1;
+        touch-action: none; /* 禁用默认触摸行为 */
+        -webkit-touch-callout: none; /* 禁用长按菜单 */
+        -webkit-user-select: none; /* 禁用文本选择 */
+        user-select: none;
     }
     
     .tile {
@@ -549,6 +555,10 @@ body {
         height: 350px;
         max-height: 80vw;
         aspect-ratio: 1;
+        touch-action: none; /* 禁用默认触摸行为 */
+        -webkit-touch-callout: none; /* 禁用长按菜单 */
+        -webkit-user-select: none; /* 禁用文本选择 */
+        user-select: none;
     }
     
     .tile {

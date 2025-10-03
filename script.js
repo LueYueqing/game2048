@@ -949,19 +949,23 @@ class Game2048 {
         gameBoard.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
             startY = e.touches[0].clientY;
-        });
+            e.preventDefault(); // 阻止默认行为，避免页面滚动
+        }, { passive: false });
         
         gameBoard.addEventListener('touchend', (e) => {
             if (this.gameOver) return;
+            
+            e.preventDefault(); // 阻止默认行为
             
             const endX = e.changedTouches[0].clientX;
             const endY = e.changedTouches[0].clientY;
             const diffX = startX - endX;
             const diffY = startY - endY;
             
+            // 需要足够的滑动距离才触发移动
             if (Math.abs(diffX) > Math.abs(diffY)) {
                 // 水平滑动
-                if (Math.abs(diffX) > 30) {
+                if (Math.abs(diffX) > 50) {
                     if (diffX > 0) {
                         this.move('left');
                     } else {
@@ -970,15 +974,15 @@ class Game2048 {
                 }
             } else {
                 // 垂直滑动
-                if (Math.abs(diffY) > 30) {
+                if (Math.abs(diffY) > 50) {
                     if (diffY > 0) {
-                        this.move('up');
+                        this.move('up');  // 向上滑动 = 向上移动
                     } else {
-                        this.move('down');
+                        this.move('down'); // 向下滑动 = 向下移动
                     }
                 }
             }
-        });
+        }, { passive: false });
         
         // 按钮事件
         document.getElementById('new-game-btn').addEventListener('click', () => {
