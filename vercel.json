@@ -4,6 +4,10 @@
     {
       "source": "/privacy",
       "destination": "/privacy.html"
+    },
+    {
+      "source": "/2048-history.html",
+      "destination": "/about/2048-history.html"
     }
   ],
   "headers": [
