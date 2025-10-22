@@ -1,5 +1,11 @@
 {
   "version": 2,
+  "rewrites": [
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*\\.css)",
