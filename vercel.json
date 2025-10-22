@@ -1,23 +1,6 @@
 {
   "version": 2,
-  "rewrites": [
-    {
-      "source": "/privacy",
-      "destination": "/privacy.html"
-    },
-    {
-      "source": "/2048-history.html",
-      "destination": "/about/2048-history.html"
-    },
-    {
-      "source": "/how-to-play-2048.html",
-      "destination": "/learn/how-to-play-2048.html"
-    },
-    {
-      "source": "/2048-strategy-guide.html",
-      "destination": "/learn/2048-strategy-guide.html"
-    }
-  ],
+  "rewrites": [],
   "headers": [
     {
       "source": "/(.*\\.css)",
