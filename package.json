@@ -1,0 +1,26 @@
+{
+  "name": "game2048-vip",
+  "version": "1.0.0",
+  "description": "Free Online 2048 Game - Complete Learning Center",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8080",
+    "start": "python -m http.server 8080",
+    "build": "echo 'Static site - no build required'",
+    "serve": "python -m http.server 3000",
+    "live": "live-server --port=8080 --open=/",
+    "stop": "taskkill /f /im python.exe",
+    "restart": "npm run stop && npm run dev"
+  },
+  "keywords": [
+    "2048",
+    "game",
+    "puzzle",
+    "strategy",
+    "learning"
+  ],
+  "author": "game2048.vip",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {}
+}

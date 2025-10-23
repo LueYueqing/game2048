@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -79,120 +79,98 @@
             padding-bottom: 10px;
         }
         
-        .faq-item {
+        .faq-section h3 {
+            color: #776e65;
+            margin: 25px 0 15px 0;
+            font-size: 1.3em;
+            border-bottom: 2px solid #bbada0;
+            padding-bottom: 5px;
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .faq-card {
             background: #eee4da;
-            margin-bottom: 20px;
+            padding: 20px;
             border-radius: 10px;
             border: 1px solid #d6d6d6;
-            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .faq-question {
-            background: #ede0c8;
-            padding: 20px;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-            border-bottom: 1px solid #d6d6d6;
+        .faq-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
         
-        .faq-question:hover {
-            background: #e6d3b7;
-        }
-        
-        .faq-question h3 {
+        .faq-card h4 {
             color: #8f7a66;
-            margin: 0;
+            margin-bottom: 15px;
             font-size: 1.2em;
             font-weight: bold;
         }
         
-        .faq-answer {
-            padding: 20px;
+        .faq-card p, .faq-card li {
             color: #776e65;
-            line-height: 1.6;
-        }
-        
-        .faq-answer p {
-            margin-bottom: 15px;
-        }
-        
-        .faq-answer ul {
-            padding-left: 20px;
-            margin-bottom: 15px;
-        }
-        
-        .faq-answer li {
-            margin-bottom: 8px;
-        }
-        
-        .faq-answer strong {
-            color: #8f7a66;
-            font-weight: bold;
-        }
-        
-        .faq-answer a {
-            color: #8f7a66;
-            text-decoration: none;
-        }
-        
-        .faq-answer a:hover {
-            text-decoration: underline;
         }
         
         .quick-links {
             background: #ede0c8;
             border: 1px solid #d6d6d6;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 40px 0;
-        }
-        
-        .quick-links h3 {
-            color: #776e65;
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 1.5em;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
         }
         
         .quick-links-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            gap: 15px;
+            margin-top: 20px;
         }
         
         .quick-link {
-            background: #faf8ef;
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid #d6d6d6;
+            background: #eee4da;
+            padding: 15px;
+            border-radius: 8px;
             text-align: center;
             transition: transform 0.2s ease;
         }
         
         .quick-link:hover {
             transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
         .quick-link h4 {
             color: #8f7a66;
             margin-bottom: 10px;
-            font-size: 1.1em;
         }
         
         .quick-link p {
-            color: #776e65;
             font-size: 0.9em;
+            color: #776e65;
             margin-bottom: 15px;
         }
         
         .quick-link a {
-            color: #8f7a66;
+            display: inline-block;
+            background: #bbada0;
+            color: #f9f6f2;
+            padding: 8px 15px;
+            border-radius: 20px;
             text-decoration: none;
             font-weight: bold;
+            font-size: 0.9em;
+            transition: background 0.2s ease;
         }
         
         .quick-link a:hover {
-            text-decoration: underline;
+            background: #9f8a76;
         }
         
         .navigation-links {
@@ -244,6 +222,14 @@
                 padding: 20px;
             }
             
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-links-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .navigation-links {
                 flex-direction: column;
                 align-items: center;
@@ -257,400 +243,192 @@
         <nav class="breadcrumb" aria-label="Breadcrumb">
             <ol>
                 <li><a href="/">Home</a></li>
-                <li><a href="index.html">Help</a></li>
+                <li><a href="/help/index.html">Help</a></li>
                 <li aria-current="page">FAQ</li>
             </ol>
         </nav>
         
         <div class="faq-header">
-            <h1>�?2048 Game FAQ</h1>
+            <h1>❓ 2048 Game FAQ</h1>
             <p>Frequently Asked Questions - Get Help with 2048 Game</p>
         </div>
         
         <div class="navigation-links">
             <a href="/" class="primary">🎮 Play 2048 Now</a>
             <a href="/learn/index.html">📚 Learning Center</a>
-            <a href="/how-to-win-2048.html">🏆 Winning Guide</a>
+            <a href="/learn/how-to-win-2048.html">🏆 Winning Guide</a>
         </div>
         
-        <!-- 快速链�?-->
+        <!-- 快速链接 -->
         <div class="quick-links">
             <h3>🚀 Quick Help</h3>
-            <div class="quick-links-grid">
+            <div class="faq-grid">
                 <div class="quick-link">
                     <h4>🎮 How to Play</h4>
                     <p>Learn the basic rules</p>
-                    <a href="/learn/how-to-play-2048.html">Get Started �?/a>
+                    <a href="/learn/how-to-play-2048.html">Get Started →</a>
                 </div>
                 
                 <div class="quick-link">
                     <h4>🏆 How to Win</h4>
                     <p>Master winning strategies</p>
-                    <a href="/how-to-win-2048.html">Learn to Win �?/a>
+                    <a href="/learn/how-to-win-2048.html">Learn to Win →</a>
                 </div>
                 
                 <div class="quick-link">
                     <h4>🎯 Advanced Tips</h4>
                     <p>Expert techniques</p>
-                    <a href="/learn/2048-strategy-guide.html">Master Level �?/a>
+                    <a href="/learn/2048-strategy-guide.html">Master Level →</a>
                 </div>
                 
                 <div class="quick-link">
-                    <h4>📱 Mobile Help</h4>
-                    <p>Touch controls guide</p>
-                    <a href="#mobile">See Below �?/a>
+                    <h4>📱 Mobile Play</h4>
+                    <p>Tips for playing on mobile</p>
+                    <a href="#mobile">See Below →</a>
                 </div>
             </div>
         </div>
         
-        <!-- 基础问题 -->
+        <!-- 详细FAQ -->
         <div class="faq-section">
-            <h2>🎮 Basic Game Questions</h2>
+            <h2>🎮 Game Basics</h2>
             
             <div class="faq-item">
-                <div class="faq-question">
-                    <h3>What is 2048 game and how do you play it?</h3>
-                </div>
-                <div class="faq-answer">
-                    <p><strong>2048 is a number puzzle game</strong> where you slide numbered tiles on a 4x4 grid to combine them and create a tile with the number 2048.</p>
-                    <p><strong>How to play:</strong></p>
-                    <ul>
-                        <li>Use arrow keys (�?�?�?�? or WASD keys to move tiles</li>
-                        <li>When two tiles with the same number touch, they merge into one</li>
-                        <li>New tiles (2 or 4) appear after each move</li>
-                        <li>Goal: Create a 2048 tile by combining smaller numbers</li>
-                    </ul>
-                    <p>Learn more in our <a href="/learn/how-to-play-2048.html">complete beginner's guide</a>.</p>
-                </div>
+                <h3>Q: What is 2048 game and how do you play it?</h3>
+                <p>A: 2048 is a sliding block puzzle game played on a 4x4 grid. The goal is to combine numbered tiles to reach a tile with the number 2048. You move tiles using the arrow keys (or by swiping on mobile). When two tiles with the same number touch, they merge into a new tile with the sum of their values (e.g., 2+2=4, 4+4=8).</p>
             </div>
             
             <div class="faq-item">
-                <div class="faq-question">
-                    <h3>How do you win 2048 game consistently?</h3>
-                </div>
-                <div class="faq-answer">
-                    <p><strong>To win 2048 consistently, follow these proven strategies:</strong></p>
+                <h3>Q: What are the basic rules of 2048?</h3>
+                <p>A: The rules are simple:
                     <ul>
-                        <li><strong>Corner Strategy:</strong> Keep your highest tile in one corner</li>
-                        <li><strong>Snake Pattern:</strong> Build tiles in descending order along one edge</li>
-                        <li><strong>Single Direction:</strong> Choose one main direction and stick to it</li>
-                        <li><strong>Plan Ahead:</strong> Think 2-3 moves ahead before making moves</li>
-                        <li><strong>Practice Regularly:</strong> Play daily to improve your skills</li>
+                        <li>Use arrow keys (↑ ↓ ← →) or WASD keys to move tiles</li>
+                        <li>When two same numbers touch, they merge into one</li>
+                        <li>New tiles (either 2 or 4) appear after each move</li>
+                        <li>The game ends when the board is full and no more moves are possible</li>
+                        <li>Your objective is to create a tile with the number 2048</li>
                     </ul>
-                    <p>Check out our detailed <a href="/how-to-win-2048.html">winning strategy guide</a> for more tips.</p>
-                </div>
+                </p>
             </div>
             
             <div class="faq-item">
-                <div class="faq-question">
-                    <h3>How do you beat 2048 the game?</h3>
-                </div>
-                <div class="faq-answer">
-                    <p><strong>Beating 2048 requires mastering the corner strategy:</strong></p>
-                    <ul>
-                        <li>Place your highest tile in one corner (bottom-right recommended)</li>
-                        <li>Never move it unless absolutely necessary</li>
-                        <li>Build a "snake" pattern of descending numbers along one edge</li>
-                        <li>Focus on merging smaller tiles first (2s, 4s, 8s)</li>
-                        <li>Maintain board control and avoid chaos</li>
-                    </ul>
-                    <p>Learn the complete <a href="/how-to-win-2048.html">beating strategy</a> with examples and tips.</p>
-                </div>
+                <h3>Q: How do you play 2048 on mobile?</h3>
+                <p>A: On mobile devices, simply swipe your finger in the direction you want to move the tiles (up, down, left, or right). The game mechanics are identical to the desktop version.</p>
             </div>
             
             <div class="faq-item">
-                <div class="faq-question">
-                    <h3>What are the basic rules of 2048?</h3>
-                </div>
-                <div class="faq-answer">
-                    <p><strong>The 2048 game rules are simple:</strong></p>
-                    <ul>
-                        <li><strong>Grid:</strong> Play on a 4x4 grid with numbered tiles</li>
-                        <li><strong>Movement:</strong> Slide all tiles in one direction using arrow keys or WASD keys</li>
-                        <li><strong>Merging:</strong> Two tiles with the same number merge into one with double the value</li>
-                        <li><strong>New Tiles:</strong> A new tile (2 or 4) appears after each move</li>
-                        <li><strong>Goal:</strong> Create a 2048 tile by combining smaller numbers</li>
-                        <li><strong>Game Over:</strong> When the board is full and no moves are possible</li>
-                    </ul>
-                </div>
+                <h3>Q: Is 2048 game hard to learn?</h3>
+                <p>A: 2048 is very easy to learn, but challenging to master! The basic rules can be understood in minutes, but developing advanced strategies to consistently reach 2048 and higher tiles takes practice and strategic thinking.</p>
             </div>
         </div>
         
-        <!-- 策略问题 -->
         <div class="faq-section">
-            <h2>🎯 Strategy Questions</h2>
+            <h2>🎯 Winning Strategies & Tips</h2>
             
             <div class="faq-item">
-                <div class="faq-question">
-                    <h3>How to get 4096 in 2048 consistently?</h3>
-                </div>
-                <div class="faq-answer">
-                    <p><strong>Reaching 4096 requires advanced strategies:</strong></p>
-                    <ul>
-                        <li><strong>Dual Corner Strategy:</strong> Maintain two high-value tiles in adjacent corners</li>
-                        <li><strong>Parallel Snake Lines:</strong> Build two parallel descending sequences</li>
-                        <li><strong>Merge Synchronization:</strong> Time merges to create optimal 4096 opportunities</li>
-                        <li><strong>Board Space Management:</strong> Use all available space efficiently</li>
-                        <li><strong>Mental Discipline:</strong> Stay focused and avoid mistakes</li>
-                    </ul>
-                    <p>Learn advanced techniques in our <a href="/learn/2048-strategy-guide.html">strategy guide</a>.</p>
-                </div>
+                <h3>Q: How do you win 2048 game consistently?</h3>
+                <p>A: To win 2048 consistently, the most popular and effective strategy is the "Corner Strategy." This involves keeping your highest tile in one of the four corners (usually bottom-right or bottom-left) and never moving it unless absolutely necessary. Build a "snake" pattern of descending tiles along the adjacent edge to facilitate merges.</p>
+                <p>Check out our detailed <a href="/learn/how-to-win-2048.html">winning strategy guide</a> for more tips.</p>
             </div>
             
             <div class="faq-item">
-                <div class="faq-question">
-                    <h3>How to get 8192 in 2048 game?</h3>
-                </div>
-                <div class="faq-answer">
-                    <p><strong>Reaching 8192 is the ultimate challenge:</strong></p>
-                    <ul>
-                        <li><strong>Perfect Snake Pattern:</strong> Maintain flawless descending sequences</li>
-                        <li><strong>Triple Strategy:</strong> Build three parallel high-value sequences</li>
-                        <li><strong>Risk Management:</strong> Avoid dangerous board situations</li>
-                        <li><strong>Mental Endurance:</strong> Maintain concentration for long games</li>
-                        <li><strong>Exceptional Discipline:</strong> Never deviate from proven strategies</li>
-                    </ul>
-                    <p>This requires months of practice and mastery of all advanced techniques.</p>
-                </div>
+                <h3>Q: How do you beat 2048 the game?</h3>
+                <p>A: Beating 2048 involves a combination of patience, foresight, and adherence to a core strategy. Focus on maintaining order on your board, planning several moves ahead, and avoiding random swipes. The goal is not just to merge, but to merge strategically to keep your highest tile anchored.</p>
+                <p>Learn the complete <a href="/learn/how-to-win-2048.html">beating strategy</a> with examples and tips.</p>
             </div>
             
             <div class="faq-item">
-                <div class="faq-question">
-                    <h3>What's the best strategy for 2048?</h3>
-                </div>
-                <div class="faq-answer">
-                    <p><strong>The best 2048 strategy combines several techniques:</strong></p>
-                    <ul>
-                        <li><strong>Corner Dominance:</strong> Keep highest tile in corner</li>
-                        <li><strong>Snake Formation:</strong> Build descending edge pattern</li>
-                        <li><strong>Direction Discipline:</strong> Stick to one primary direction</li>
-                        <li><strong>Merge Planning:</strong> Think 2-3 moves ahead</li>
-                        <li><strong>Board Control:</strong> Never let the board become chaotic</li>
-                        <li><strong>Patience:</strong> Take time to make optimal moves</li>
-                    </ul>
-                    <p>Whether playing on computer or mobile, this strategy works best for consistent wins.</p>
-                </div>
+                <h3>Q: What's the best 2048 strategy to beat the game?</h3>
+                <p>A: The best strategy is generally considered to be the "Corner and Snake" method. Keep your highest tile in a corner, and build a descending sequence of tiles along one or two adjacent edges. This creates a predictable flow for merges and minimizes board clutter.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Q: How to get 4096 in 2048 consistently?</h3>
+                <p>A: Reaching 4096 consistently requires mastering the basic corner strategy and extending it. You'll need to manage two high-value tiles (e.g., 1024 and 2048) and plan their merges carefully. This often involves creating a secondary "snake" pattern or temporarily breaking your main chain to set up a crucial merge.</p>
+                <p>Learn advanced techniques in our <a href="/learn/2048-strategy-guide.html">strategy guide</a>.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Q: How to get 8192 in 2048 game?</h3>
+                <p>A: Achieving 8192 is a significant challenge and requires near-perfect execution of advanced strategies, including multi-corner management and deep foresight. It's a test of extreme patience and discipline, often requiring you to play for extended periods without making a single mistake.</p>
             </div>
         </div>
         
-        <!-- 技术问�?-->
         <div class="faq-section">
-            <h2>📱 Technical Questions</h2>
+            <h2>🔧 Technical & General Questions</h2>
             
             <div class="faq-item">
-                <div class="faq-question">
-                    <h3>How do you play 2048 on mobile devices?</h3>
-                </div>
-                <div class="faq-answer">
-                    <p><strong>2048 works great on mobile devices:</strong></p>
-                    <ul>
-                        <li><strong>Touch Controls:</strong> Swipe up, down, left, or right to move tiles</li>
-                        <li><strong>Responsive Design:</strong> Automatically adapts to your screen size</li>
-                        <li><strong>Same Strategies:</strong> All winning strategies work on mobile</li>
-                        <li><strong>No Download:</strong> Play directly in your browser</li>
-                        <li><strong>Cross-Platform:</strong> Your progress syncs across devices</li>
-                    </ul>
-                    <p>The same 2048 strategy to beat the game works on both computer and mobile devices.</p>
-                </div>
+                <h3>Q: Does the game save my progress?</h3>
+                <p>A: Yes, your game progress and best score are automatically saved in your browser's local storage. You can close the tab or browser and resume your game exactly where you left off.</p>
             </div>
             
             <div class="faq-item">
-                <div class="faq-question">
-                    <h3>Can I play 2048 without downloading anything?</h3>
-                </div>
-                <div class="faq-answer">
-                    <p><strong>Yes! Our 2048 game is completely web-based:</strong></p>
-                    <ul>
-                        <li><strong>No Downloads:</strong> Play directly in your browser</li>
-                        <li><strong>No Registration:</strong> Start playing immediately</li>
-                        <li><strong>Cross-Platform:</strong> Works on all devices and browsers</li>
-                        <li><strong>Auto-Save:</strong> Your progress is saved automatically</li>
-                        <li><strong>Free Forever:</strong> No hidden costs or subscriptions</li>
-                    </ul>
-                </div>
+                <h3>Q: Can I play 2048 offline?</h3>
+                <p>A: Absolutely! Once the game page has loaded in your browser, you can disconnect from the internet and continue playing 2048 without any issues. Your progress will still be saved locally.</p>
             </div>
             
             <div class="faq-item">
-                <div class="faq-question">
-                    <h3>How do I save my progress in 2048?</h3>
-                </div>
-                <div class="faq-answer">
-                    <p><strong>Your progress is automatically saved:</strong></p>
-                    <ul>
-                        <li><strong>Local Storage:</strong> High scores saved in your browser</li>
-                        <li><strong>Game Statistics:</strong> Wins, average scores, and achievements tracked</li>
-                        <li><strong>No Manual Save:</strong> Everything happens automatically</li>
-                        <li><strong>Cross-Session:</strong> Progress persists between browser sessions</li>
-                        <li><strong>Privacy:</strong> All data stays on your device</li>
-                    </ul>
-                    <p>You can clear your statistics anytime using the "Clear Stats" button.</p>
-                </div>
+                <h3>Q: Is 2048 game free to play?</h3>
+                <p>A: Yes! Our 2048 game is completely free to play online. There are no hidden costs, subscriptions, or in-app purchases. Enjoy the game without any financial commitment.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Q: What browsers are supported for 2048?</h3>
+                <p>A: Our 2048 game is designed to be compatible with all modern web browsers, including Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge, and Opera. It also works seamlessly on mobile browsers across iOS and Android devices.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Q: Why is 2048 so addictive?</h3>
+                <p>A: 2048 is addictive due to its simple rules, clear objective, and the satisfying feeling of merging tiles to create higher numbers. It combines elements of strategy, luck, and problem-solving, making it engaging and rewarding. The constant challenge to beat your high score also contributes to its addictive nature.</p>
             </div>
         </div>
         
-        <!-- 高级问题 -->
+        <!-- 相关资源链接 -->
         <div class="faq-section">
-            <h2>🏆 Advanced Questions</h2>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>What's the highest possible tile in 2048?</h3>
+            <h2>📚 Continue Your Learning Journey</h2>
+            <div class="faq-grid">
+                <div class="faq-card">
+                    <h4>🎮 Learn the Basics</h4>
+                    <p>New to 2048? Start with our complete beginner's guide to understand the fundamentals.</p>
+                    <a href="/learn/how-to-play-2048.html" style="color: #8f7a66; text-decoration: none; font-weight: bold;">📖 Get Started →</a>
                 </div>
-                <div class="faq-answer">
-                    <p><strong>The highest tile depends on your skill level:</strong></p>
-                    <ul>
-                        <li><strong>Theoretical Limit:</strong> Unlimited (mathematically possible)</li>
-                        <li><strong>Practical Limit:</strong> 131072 is considered the highest achievable</li>
-                        <li><strong>Board Constraints:</strong> Limited by 4x4 grid space</li>
-                        <li><strong>Probability:</strong> Higher tiles become exponentially harder</li>
-                        <li><strong>Master Level:</strong> 8192+ requires exceptional skill and luck</li>
-                    </ul>
-                    <p>While the goal is to reach 2048, you can continue playing to reach higher tiles!</p>
+                
+                <div class="faq-card">
+                    <h4>🎯 Master Advanced Techniques</h4>
+                    <p>Ready for expert-level strategies? Learn techniques to reach 4096, 8192, and beyond.</p>
+                    <a href="/learn/2048-strategy-guide.html" style="color: #8f7a66; text-decoration: none; font-weight: bold;">🚀 Advanced Guide →</a>
                 </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>How long does it take to learn 2048?</h3>
+                
+                <div class="faq-card">
+                    <h4>🏆 How to Win 2048</h4>
+                    <p>Proven strategies and techniques to consistently reach 2048 tile.</p>
+                    <a href="/learn/how-to-win-2048.html" style="color: #8f7a66; text-decoration: none; font-weight: bold;">⚡ Winning Strategies →</a>
                 </div>
-                <div class="faq-answer">
-                    <p><strong>Learning timeline varies by goal:</strong></p>
-                    <ul>
-                        <li><strong>Basic Rules:</strong> 5-10 minutes to understand</li>
-                        <li><strong>First Win:</strong> 1-2 hours of focused practice</li>
-                        <li><strong>Consistent Wins:</strong> 1-2 weeks of regular play</li>
-                        <li><strong>4096 Achievement:</strong> 1-2 months of dedicated practice</li>
-                        <li><strong>Master Level:</strong> 6+ months for 8192+ tiles</li>
-                    </ul>
-                    <p>With proper 2048 strategy, most players can beat 2048 their first time within 1-2 hours.</p>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>Why is it so hard to beat 2048?</h3>
-                </div>
-                <div class="faq-answer">
-                    <p><strong>2048 is challenging but not impossible:</strong></p>
-                    <ul>
-                        <li><strong>Strategy Required:</strong> Random moves won't work</li>
-                        <li><strong>Mental Discipline:</strong> Requires patience and planning</li>
-                        <li><strong>Practice Needed:</strong> Muscle memory and pattern recognition</li>
-                        <li><strong>Risk Management:</strong> Must avoid dangerous situations</li>
-                        <li><strong>Pattern Recognition:</strong> Need to see optimal moves quickly</li>
-                    </ul>
-                    <p>Many players fail because they don't follow a consistent 2048 strategy or rush their moves. With proper technique, beating 2048 becomes much easier.</p>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>What is the theoretical maximum score in 2048?</h3>
-                </div>
-                <div class="faq-answer">
-                    <p><strong>The theoretical maximum is mathematically fascinating:</strong></p>
-                    <ul>
-                        <li><strong>Highest Tile:</strong> 2¹�?= 131,072 (theoretically possible)</li>
-                        <li><strong>Maximum Score:</strong> Depends on perfect play and extraordinary luck</li>
-                        <li><strong>AI Achievement:</strong> AI programs can consistently reach 32,768+</li>
-                        <li><strong>Human Record:</strong> Most humans rarely exceed 8,192</li>
-                        <li><strong>Binary System:</strong> All numbers follow 2^n progression</li>
-                    </ul>
-                    <p>The game uses powers of 2 (2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048...) because it's based on binary mathematics, making it computationally elegant.</p>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>Why are all numbers in 2048 powers of 2?</h3>
-                </div>
-                <div class="faq-answer">
-                    <p><strong>The binary system makes 2048 mathematically elegant:</strong></p>
-                    <ul>
-                        <li><strong>Computational Efficiency:</strong> Easy for computers to process</li>
-                        <li><strong>Mathematical Beauty:</strong> Each merge exactly doubles the value</li>
-                        <li><strong>Strategic Clarity:</strong> Clear progression pattern for players</li>
-                        <li><strong>Educational Value:</strong> Teaches exponential growth concepts</li>
-                        <li><strong>Design Simplicity:</strong> Avoids complex arithmetic</li>
-                    </ul>
-                    <p>This design choice makes the game both strategically interesting and mathematically sound, which is why it became so popular in educational settings.</p>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>Can AI really play 2048 better than humans?</h3>
-                </div>
-                <div class="faq-answer">
-                    <p><strong>Yes, AI consistently outperforms human players:</strong></p>
-                    <ul>
-                        <li><strong>Perfect Calculation:</strong> AI can calculate optimal moves instantly</li>
-                        <li><strong>No Emotional Pressure:</strong> Doesn't get frustrated or rush decisions</li>
-                        <li><strong>Pattern Recognition:</strong> Analyzes millions of game states</li>
-                        <li><strong>Consistent Performance:</strong> Maintains optimal play throughout</li>
-                        <li><strong>Advanced Algorithms:</strong> Uses Monte Carlo tree search and reinforcement learning</li>
-                    </ul>
-                    <p>AI programs can achieve 90%+ win rates and consistently reach tiles like 16,384 and 32,768, which are extremely rare for human players.</p>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>Should I use the undo feature when learning?</h3>
-                </div>
-                <div class="faq-answer">
-                    <p><strong>Use undo strategically:</strong></p>
-                    <ul>
-                        <li><strong>Learning Phase:</strong> Use sparingly to understand consequences</li>
-                        <li><strong>Mistake Recovery:</strong> Only for genuine errors, not strategy changes</li>
-                        <li><strong>Skill Development:</strong> Don't rely on it for decision-making</li>
-                        <li><strong>Practice Mode:</strong> Good for testing different approaches</li>
-                        <li><strong>Real Games:</strong> Limit use to develop better planning</li>
-                    </ul>
-                    <p>Relying too heavily on undo can prevent you from developing proper skills to beat 2048 consistently.</p>
+                
+                <div class="faq-card">
+                    <h4>❓ Need More Help?</h4>
+                    <p>Have questions? Check our comprehensive FAQ and help center for answers.</p>
+                    <a href="/help/index.html" style="color: #8f7a66; text-decoration: none; font-weight: bold;">📖 Help Center →</a>
                 </div>
             </div>
         </div>
         
-        <!-- 联系支持 -->
-        <div class="faq-section">
-            <h2>📞 Still Need Help?</h2>
-            
-            <div class="quick-links">
-                <h3>🚀 Additional Resources</h3>
-                <div class="quick-links-grid">
-                    <div class="quick-link">
-                        <h4>📚 Complete Guide</h4>
-                        <p>Step-by-step tutorials</p>
-                        <a href="/learn/index.html">Learning Center �?/a>
-                    </div>
-                    
-                    <div class="quick-link">
-                        <h4>🎯 Winning Strategies</h4>
-                        <p>Proven techniques</p>
-                        <a href="/how-to-win-2048.html">Strategy Guide �?/a>
-                    </div>
-                    
-                    <div class="quick-link">
-                        <h4>🏆 Advanced Tips</h4>
-                        <p>Expert techniques</p>
-                        <a href="/learn/2048-strategy-guide.html">Master Guide �?/a>
-                    </div>
-                    
-                    <div class="quick-link">
-                        <h4>🎮 Practice Now</h4>
-                        <p>Apply what you learned</p>
-                        <a href="/">Play 2048 �?/a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 导航链接 -->
         <div class="navigation-links">
-            <a href="/" class="primary">🎮 Ready to Play?</a>
-            <a href="/learn/index.html">📚 Continue Learning</a>
-            <a href="/how-to-win-2048.html">🏆 Master Strategies</a>
+            <a href="/" class="primary">🎮 Play 2048 Now</a>
+            <a href="/learn/index.html">📚 Learning Center →</a>
+            <a href="/learn/how-to-win-2048.html">🏆 Master Strategies →</a>
+            <a href="/learn/2048-strategy-guide.html">🎯 Advanced Guide →</a>
+        </div>
+        
+        <div class="expert-tips">
+            <h2>💡 Pro Tips for 2048 Success</h2>
+            <ul>
+                <li>Always keep your highest tile in a corner.</li>
+                <li>Build a "snake" of tiles in descending order along one edge.</li>
+                <li>Avoid random moves; plan several steps ahead.</li>
+                <li>Use the undo feature to learn from mistakes (if available).</li>
+                <li>Patience is key – don't rush your moves.</li>
+            </ul>
         </div>
     </div>
     
