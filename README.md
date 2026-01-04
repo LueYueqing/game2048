@@ -29,10 +29,10 @@ npm run serve    # Port 3000
 
 ### Access the Game
 
-- **Homepage**: http://localhost:8080
-- **Learn Center**: http://localhost:8080/learn/
-- **Help Center**: http://localhost:8080/help/
-- **About Page**: http://localhost:8080/about/
+- **Homepage**: https://game2048.vip
+- **Learn Center**: https://game2048.vip/learn/
+- **Help Center**: https://game2048.vip/help/
+- **About Page**: https://game2048.vip/about/
 
 ## 📁 Project Structure
 
@@ -137,3 +137,23 @@ Contributions are welcome! Please feel free to submit issues and pull requests.
 ---
 
 **Play 2048 for free at [game2048.vip](https://game2048.vip)**
+
+---
+
+## 🧑‍💻 关于作者与更多项目
+
+除了 Game2048.vip，我还独立开发和运营了多个实用、有趣的在线工具和网站，欢迎体验：
+
+- [BestTimeGuide.com](https://besttimeguide.com/) — 最佳时间指南，帮你发现做任何事的最佳时机，数据驱动的生活建议。
+- [LinkTrx.com](https://linktrx.com/) — 反向链接共创平台，助力高质量外链建设与SEO提升。
+- [OnlineImageUpscaler.com](https://onlineimageupscaler.com/) — 免费AI图片无损放大工具，支持批量处理，无需注册。
+- [WhiteScreen.show](https://whitescreen.show/) — 在线白屏工具，可作光源、绘画辅助、专注等多用途。
+- [Days-From.com](https://days-from.com/) — 专业日期计算器，轻松计算未来/过去任意天数、周、月、节假日。
+- [CheckYourCPS.com](https://checkyourcps.com/) — 免费点击速度测试（CPS）、反应力与游戏辅助工具。
+- [CustomQR.pro](https://customqr.pro/) — 免费二维码生成器，支持自定义设计、批量生成、无广告。
+- [TestYourDraw.com](https://testyourdraw.com/) — 手绘挑战小游戏，测试你的圆、三角、方形等图形绘制精度。
+- [PromptVow.com](https://promptvow.com/) — AI Prompt 管理平台，助力开发者高效组织和优化对话模板。
+- [Picnan.com](https://www.picnan.com/) — 图南坊，内容创作、AI素材生成与图片处理工具集合。
+- [AndeDigi.com](https://www.andedigi.com/) — AndeDigi，开发者与数字工作者的免费在线工具箱。
+- [RedCao.com](https://www.redcao.com/) — 红草笔记运营系统，社交电商内容管理与运营平台。
+- [优资快报](http://youzikuaibao.com.cn) — 网站SEO管理与优化平台，集成站群管理、SEO分析、外链运营等功能。
