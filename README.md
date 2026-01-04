@@ -3,9 +3,9 @@
 
 A complete 2048 game website with comprehensive learning center, strategy guides, and expert tips.
 
-## 🌟 Features
+## 🌟 Features  
 
-- **🎮 Play 2048 Game** - Free online 2048 puzzle game
+- **🎮 Play 2048 Game** - Free online 2048 puzzle game 
 - **📚 Complete Learning Center** - Beginner to expert guides
 - **🏆 Winning Strategies** - Proven techniques to beat 2048
 - **🎯 Advanced Strategies** - Master-level techniques for 4096, 8192+
