@@ -1,4 +1,17 @@
 {
   "version": 2,
-  "outputDirectory": ""
+  "outputDirectory": "",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.game2048.vip"
+        }
+      ],
+      "destination": "https://game2048.vip/:path*",
+      "statusCode": 301
+    }
+  ]
 }
