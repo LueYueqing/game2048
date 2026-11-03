@@ -3,6 +3,28 @@
   "outputDirectory": "",
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.game2048.vip"
+        }
+      ],
+      "destination": "https://game2048.vip/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.game2048.vip"
+        }
+      ],
+      "destination": "https://game2048.vip/:path*/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
@@ -11,7 +33,27 @@
         }
       ],
       "destination": "https://game2048.vip/:path*",
-      "statusCode": 301
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/about/index.html",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/help/index.html",
+      "destination": "/help/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/index.html",
+      "destination": "/learn/",
+      "permanent": true
     }
   ]
 }
