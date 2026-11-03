@@ -24,5 +24,7 @@ Play in the browser (keyboard arrows/WASD or swipe on mobile). Progress and best
 ## Optional
 
 - [Play 2048](https://game2048.vip/): Main game board
-- [Privacy Policy](https://game2048.vip/privacy.html): Data and privacy practices
+- [Privacy Policy](https://game2048.vip/privacy/): Data and privacy practices
+- [Terms of Use](https://game2048.vip/terms/): Site terms
+- [Contact](https://game2048.vip/contact/): Email contacts for support and privacy
 - [Sitemap](https://game2048.vip/sitemap.xml): Indexable URLs
