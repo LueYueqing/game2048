@@ -1,0 +1,28 @@
+# Game2048.vip
+
+> Free online 2048 number puzzle at https://game2048.vip — slide tiles on a 4x4 grid; matching numbers merge until you reach 2048.
+
+Play in the browser (keyboard arrows/WASD or swipe on mobile). Progress and best score save in local storage. Preferred host is the apex domain `https://game2048.vip` (not www).
+
+## Learn
+
+- [Learning Center](https://game2048.vip/learn/): Guides from beginner to advanced
+- [How to Play 2048](https://game2048.vip/learn/how-to-play-2048.html): Rules, controls, and basics
+- [How to Win 2048](https://game2048.vip/learn/how-to-win-2048.html): Corner and snake strategies to beat 2048
+- [2048 Strategy Guide](https://game2048.vip/learn/2048-strategy-guide.html): Advanced techniques for 4096+
+
+## Help
+
+- [Help Center](https://game2048.vip/help/): Support and troubleshooting hub
+- [FAQ](https://game2048.vip/help/faq.html): Common questions about play, winning, and the site
+
+## About
+
+- [About 2048](https://game2048.vip/about/): Overview of the game and this site
+- [2048 History](https://game2048.vip/about/2048-history.html): Gabriele Cirulli and how 2048 went viral
+
+## Optional
+
+- [Play 2048](https://game2048.vip/): Main game board
+- [Privacy Policy](https://game2048.vip/privacy.html): Data and privacy practices
+- [Sitemap](https://game2048.vip/sitemap.xml): Indexable URLs
