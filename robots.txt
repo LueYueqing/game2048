@@ -1,4 +1,47 @@
+# Game2048.vip — public free 2048 game + learning content.
+# AI crawlers: Allow (aligned with /llms.txt for citation & discovery).
+
 User-agent: *
+Allow: /
+
+# OpenAI
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Google Gemini training / grounding
+User-agent: Google-Extended
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Other common AI crawlers
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: meta-externalagent
 Allow: /
 
 Sitemap: https://game2048.vip/sitemap.xml
