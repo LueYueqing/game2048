@@ -1,5 +1,7 @@
-# Game2048.vip — public free 2048 game + learning content.
-# AI crawlers: Allow (aligned with /llms.txt for citation & discovery).
+Sitemap: https://game2048.vip/sitemap.xml
+
+# Game2048.vip - public free 2048 game and learning content.
+# AI crawlers: Allow (aligned with /llms.txt for citation and discovery).
 
 User-agent: *
 Allow: /
